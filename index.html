@@ -1,31 +1,74 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Dungeon Master Database</title>
+        <!--<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="DMD.css"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    </head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-analytics.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
-    authDomain: "benbrinkman-1d46e.firebaseapp.com",
-    databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
-    projectId: "benbrinkman-1d46e",
-    storageBucket: "benbrinkman-1d46e.appspot.com",
-    messagingSenderId: "221991902624",
-    appId: "1:221991902624:web:465acfe3361337b8ac58c5",
-    measurementId: "G-N0N6P0T2LM"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-</body>
     
+    <div id="topBar">
+        <div class = "title">Dungeons &amp; Dragons &amp; Databases</div>
+    </div>
+    <div id="center">
+        <div id="tile"></div>
+        <div id="tile"></div>
+        <div id="tile"></div>
+        <div id="tile"></div>
+        <div id="tile"></div>
+        <div id="tile"></div>
+    </div>
+
+    
+    
+    
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+        apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
+        authDomain: "benbrinkman-1d46e.firebaseapp.com",
+        databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
+        projectId: "benbrinkman-1d46e",
+        storageBucket: "benbrinkman-1d46e.appspot.com",
+        messagingSenderId: "221991902624",
+        appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
+        measurementId: "G-YF3NDT9KGK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+
+
+
+        var testVar = firebase.database().ref('/users/' + 1).once('value').then(function(snapshot) {
+            var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+            console.log(username);
+        });
+
+
+
+        function writeUserData(userId, name, email, imageUrl) {
+            firebase.database().ref('users/' + userId).set({
+                username: name,
+                email: email,
+                profile_picture : imageUrl
+            });
+        }
+
+        firebase.analytics();
+
+    </script>
+</body>
 </html>
