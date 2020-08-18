@@ -11,6 +11,7 @@ body{
 }
 
 #topBar{
+    position:relative;
     width:100%;
     //height:70px;
     background-color:white;
@@ -28,21 +29,143 @@ body{
 
 #center{
     padding:0%;
-    width:60%;
-    margin-left:20%;
+    width:80%;
+    margin-left:10%;
     text-align:center;
     //background-color:rgba(1,1,1,0.5);
-    height:1000px
+    height:100vh;
 }
 
-#tile{
+.tile{
+    position:relative;
     width:32%;
     height:15vw;
     border-width:0px;
     float:left;
     background-color:white;
-    margin-top:1%;
-    margin-left:1%;
+    margin-top:0.5%;
+    margin-left:0.5%;
     margin-bottom:0%;
     border-radius:5px;
+    overflow:hidden;
+    transition:1s;
+
 }
+
+.tile:hover .tileLabel{
+    top:0%;
+}
+
+.tileImg{
+    //background-color:aqua;
+    width:100%;
+    //height:10vw;
+    overflow: hidden;
+    
+}
+
+.tileImg img{
+    left:0px;
+    position:absolute;
+    width:100%;
+    z-index:10;
+}
+
+.tileLabel{
+    position:absolute;
+    background-color:#f9f9f9;
+    width:100%;
+    height:5vw;
+    box-shadow:0px 0px 5px 0px grey;
+    top:66%;
+    z-index:15;
+    transition:0.2s;
+}
+
+.tileLabelText{
+    
+    text-align:center;
+    font-size:1.8vw;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 5vw;
+}
+
+
+/*///////////////////////////////////////////////////////////
+//////////////////////////CLASSES////////////////////////////
+///////////////////////////////////////////////////////////*/
+
+#mainContent{
+    margin-top:2%;
+    position:absolute;
+    padding:2%;
+    width:46%;
+    text-align:left;
+    background-color:white;
+/*    height:100vh;*/
+    margin-left:25%;
+}
+
+
+#mainContent td, th{
+/*    border:1px solid #ddd;*/
+    border:0px solid #ddd;
+
+    padding:1px;
+    margin:0px;
+    
+}
+
+#mainContent tr:nth-child(even){background-color: #f2f2f2;}
+
+#mainContent p{
+    padding:0px;
+    margin:0px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+#mainContent li{
+    padding:0px;
+    margin:0px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+#mainContent h1{
+    padding:0px;
+    margin:0px;
+    margin-bottom:15px;
+    margin-top:15px;
+    font-family: 'Roboto Mono', monospace;
+
+}
+
+#mainContent h2{
+    padding:0px;
+    margin:0px;
+    margin-bottom:15px;
+    margin-top:15px;
+    font-family: 'Roboto Mono', monospace;
+
+}
+
+#mainContent h3{
+    padding:0px;
+    margin:0px;
+    margin-bottom:10px;
+    margin-top:10px;
+    font-family: 'Roboto Mono', monospace;
+
+}
+
+#mainContent h2:after
+{
+    content:' ';
+    display:block;
+    border-top:1px solid black;
+}
+
+#mainContent table{
+    width:100%;
+/*    text-align:center;*/
+}
+

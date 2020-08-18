@@ -12,60 +12,15 @@
     <div id="topBar">
         <div class = "title">Dungeons &amp; Dragons &amp; Databases</div>
     </div>
-    <div id="center" onclick='AddBox()'>
-        <div class="tile">
-            <div class="tileImg">
-                <img src="img/pricesandobjects1.png" alt="Prices and Objects">
-            </div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Prices and Objects
-                </div>
-            </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Random Generator
-                </div>
-            </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Magic items
-                </div>
-            </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Spells
-                </div>
-            </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Monsters
-                </div>
-            </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Classes
-                </div>
-            </div>
-        </div>
+    
+    <div id="mainContent">
+
         
     </div>
-
+    
+    
+    
+    
     
     
     
@@ -101,7 +56,6 @@
         function Tiles(margin, numTiles){
             var tile = document.getElementsByClassName("tile");
             var tileWidth = (100-((numTiles+1)*margin))/numTiles;
-            console.log(tileWidth);
             for (var i = 0; i < tile.length; i++){
                 tile[i].style.marginTop=margin+"%";
                 tile[i].style.marginLeft=margin+"%";
@@ -110,15 +64,14 @@
             
         }
 
-        function AddBox(){
-            
-        }
         
         
         
 
-        var testVar = firebase.database().ref('/users/' + 1).once('value').then(function(snapshot) {
-            var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        var testVar = firebase.database().ref('/class/Fighter/2').once('value').then(function(snapshot) {
+            //var username = (snapshot.val() && snapshot.val().fighterclass) || 'Anonymous';
+            var username = snapshot.val().content;
+            document.getElementById("mainContent").innerHTML = username;
             console.log(username);
         });
 
