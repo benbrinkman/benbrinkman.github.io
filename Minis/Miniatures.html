@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ben's Miniatures</title>
+        <link rel="stylesheet" type="text/css" href="minis.css"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="top">
+            <input type="text" id="urlInput" name="urlInput">
+            <input type="submit" id="inputSubmit" name="inputSubmit" onclick='InputNewMini()'>
+        </div>
+        <div id="content">
+            
+            <div class="content-box">
+                <div class="content-box-inside">
+                    <div class="name-box"></div>
+                    <div class="info-box-left"></div>
+                    <div class="info-box-right"></div>
+                    <div class="picture-box">
+                        <img src="https://media.miniaturemarket.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/d/dderlw-025a.jpg">
+                    </div>
+                    <div class="bottom-box">
+                        <img src = "img/dd.png">
+                        <div>text</div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box-inside">
+                    <div class="name-box"></div>
+                    <div class="info-box-left"></div>
+                    <div class="info-box-right"></div>
+                    <div class="picture-box">
+                        <img src="">
+                    </div>
+                    <div class="bottom-box"></div>
+                </div>
+            </div>
+            
+            <div class="content-box">
+                <div class="content-box-inside">
+                    <div class="name-box"></div>
+                    <div class="info-box-left"></div>
+                    <div class="info-box-right"></div>
+                    <div class="picture-box">
+                        <img src="">
+                    </div>
+                    <div class="bottom-box"></div>
+                </div>
+            </div>
+            
+            
+            <div class="content-box">
+                <div class="content-box-inside">
+                    <div class="name-box"></div>
+                    <div class="info-box-left"></div>
+                    <div class="info-box-right"></div>
+                    <div class="picture-box">
+                        <img src="">
+                    </div>
+                    <div class="bottom-box"></div>
+                </div>
+            </div>
+            
+            
+            <div class="content-box">
+                <div class="content-box-inside">
+                    <div class="name-box"></div>
+                    <div class="info-box-left"></div>
+                    <div class="info-box-right"></div>
+                    <div class="picture-box">
+                        <img src="">
+                    </div>
+                    <div class="bottom-box"></div>
+                </div>
+            </div>
+            
+        </div>
+        <script>
+            
+            numDifMinis = 0;
+            
+            function InputNewMini(){
+                console.log("this is working");
+                var url = document.getElementById("urlInput").value;
+                
+                var contentMain = document.getElementById("content");
+                
+                var contentBox = document.createElement('div');
+                contentBox.classList.add('content-box');
+                numDifMinis+=1;
+                contentBox.setAttribute('id',"mini"+numDifMinis);
+                
+                var contentBoxInside= document.createElement('div');
+                contentBoxInside.classList.add('content-box-inside');
+                contentBox.appendChild(contentBoxInside);
+                
+                var nameBox= document.createElement('div');
+                nameBox.classList.add('name-box');
+                contentBoxInside.appendChild(nameBox);
+
+                var infoBoxLeft= document.createElement('div');
+                infoBoxLeft.classList.add('info-box-left');
+                contentBoxInside.appendChild(infoBoxLeft);
+                
+                var infoBoxRight = document.createElement('div');
+                infoBoxRight.classList.add('info-box-right');
+                contentBoxInside.appendChild(infoBoxRight);
+                
+                var pictureBox = document.createElement('div');
+                pictureBox.classList.add('picture-box');
+                contentBoxInside.appendChild(pictureBox);
+                
+                var imageLink = document.createElement('a');
+                imageLink.setAttribute("href", url);
+                pictureBox.appendChild(imageLink);
+                
+                var img = document.createElement('img');
+                imageLink.appendChild(img);
+                
+                var bottomBox = document.createElement('div');
+                bottomBox.classList.add('bottom-box');
+                contentBoxInside.appendChild(bottomBox);              
+                
+                
+                var sourceImg = document.createElement('img');
+                
+                
+                
+                contentMain.appendChild(contentBox);
+            }
+            
+            function getSource(){
+                
+            }
+            
+            
+        </script>
+    </body>
+</html>
