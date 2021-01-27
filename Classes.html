@@ -65,26 +65,26 @@
         }
 
         
-        const numberOfUsers = 116;
-        const randomIndex = Math.floor(Math.random() * numberOfUsers);
-
-        var ref = firebase.database().ref('0/0/feats');
-
-        ref.limitToFirst(randomIndex).limitToLast(1).once('value').then(snapshot =>
-                                                                        {
-            var username = snapshot.val().description;
-            document.getElementById("mainContent").innerHTML = username;
-            console.log(username);
-            // do something with the user data
-        });
-        
-
-//        var testVar = firebase.database().ref('/0/0/feats/charger').once('value').then(function(snapshot) {
-//            //var username = (snapshot.val() && snapshot.val().fighterclass) || 'Anonymous';
+//        const numberOfUsers = 116;
+//        const randomIndex = Math.floor(Math.random() * numberOfUsers);
+//
+//        var ref = firebase.database().ref('0/0/feats');
+//
+//        ref.limitToFirst(randomIndex).limitToLast(1).once('value').then(snapshot =>
+//                                                                        {
 //            var username = snapshot.val().description;
 //            document.getElementById("mainContent").innerHTML = username;
 //            console.log(username);
+//            // do something with the user data
 //        });
+//        
+
+        var testVar = firebase.database().ref('/0/0/feats/charger').once('value').then(function(snapshot) {
+            //var username = (snapshot.val() && snapshot.val().fighterclass) || 'Anonymous';
+            var username = snapshot.val().description;
+            document.getElementById("mainContent").innerHTML = username;
+            console.log(username);
+        });
 
 
 
