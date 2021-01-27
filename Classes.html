@@ -70,7 +70,8 @@
 
         var ref = firebase.database().ref('0/0/feats');
 
-        ref.limitToFirst(randomIndex).limitToLast(1).once('value').then(function(snapshot) {
+        ref.limitToFirst(randomIndex).limitToLast(1).once('value').then(snapshot =>
+                                                                        {
             var username = snapshot.val().description;
             document.getElementById("mainContent").innerHTML = username;
             console.log(username);
