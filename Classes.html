@@ -70,7 +70,7 @@
 
         var testVar = firebase.database().ref('/0/0/feats/charger').once('value').then(function(snapshot) {
             //var username = (snapshot.val() && snapshot.val().fighterclass) || 'Anonymous';
-            var username = snapshot.val().content;
+            var username = snapshot.val().description;
             document.getElementById("mainContent").innerHTML = username;
             console.log(username);
         });
