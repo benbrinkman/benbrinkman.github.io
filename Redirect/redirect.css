@@ -79,7 +79,7 @@ body{
 .linkBoxHolder{
     float:left;
     display:block;
-    width:10%;
+    width:20%;
     justify-content: center;
     align-items: center;
     
@@ -88,8 +88,8 @@ body{
 
 .linkBox{
 /*    display:block;*/
-    width:70px;
-    height:70px;
+    width:100px;
+    height:100px;
     background-color:white;
     margin:auto;
     margin-top:5px;

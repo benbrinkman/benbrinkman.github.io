@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bengeons &amp; Dragons</title>
+        <!--<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="bengeon.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,100&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <div id="header">
+            <h1>Welcome to the Bengeon</h1>
+            <h2>Ben's Dungeons &amp; Dragons lists and things</h2>
+        </div>
+        <div id='content'>
+            <p id='texttest'>this is some test text</p>
+        </div>
+    
+    
+    
+    
+    
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+        apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
+        authDomain: "benbrinkman-1d46e.firebaseapp.com",
+        databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
+        projectId: "benbrinkman-1d46e",
+        storageBucket: "benbrinkman-1d46e.appspot.com",
+        messagingSenderId: "221991902624",
+        appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
+        measurementId: "G-YF3NDT9KGK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+
+        Tiles(1, 3);
+        
+        function Tiles(margin, numTiles){
+            var tile = document.getElementsByClassName("tile");
+            var tileWidth = (100-((numTiles+1)*margin))/numTiles;
+            for (var i = 0; i < tile.length; i++){
+                tile[i].style.marginTop=margin+"%";
+                tile[i].style.marginLeft=margin+"%";
+                tile[i].style.width=tileWidth+"%";
+            }
+            
+        }
+
+        
+//        const numberOfUsers = 116;
+//        const randomIndex = Math.floor(Math.random() * numberOfUsers);
+//
+        function snapshotToArray(snapshot) {
+            var returnArr = [];
+
+            snapshot.forEach(function(childSnapshot) {
+                var item = childSnapshot.val();
+                item.key = childSnapshot.key;
+
+                returnArr.push(item);
+            });
+            return returnArr;
+        };
+        
+        
+        var testVar = firebase.database().ref('/0/0/feats/').once('value').then(function(snapshot) {
+            feats = snapshotToArray(snapshot);
+            
+            var len = feats.length;
+            var randomIndex = Math.floor(Math.random() * len);
+            var textArea = document.getElementById("content");
+            var i;
+            //set first row of table
+//            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Prerequisites</th><th>Description</th><th>Source</th></tr>"; 
+            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Description</th></tr>"; 
+            for(i=0; i<len;i++){
+                var row = "<tr>";
+                var name="<td class='nameRow'>"+feats[i].name+"</td>";
+                var prereq="<td class='prerequisitesRow'>"+feats[i].prerequisite+"</td>";
+                var desc="<td class='descriptionRow'>"+feats[i].description+"</td>";
+                var source="<td class='sourceRow'>"+feats[i].source+"</td>";
+                var rowEnd = "</tr>";
+                
+                htmlTable = htmlTable.concat(row, name, prereq, rowEnd);
+            }
+            htmlTable += "</table>";
+            textArea.innerHTML = htmlTable;
+            console.log(len);
+        });
+        
+        
+
+
+
+        function writeUserData(userId, name, email, imageUrl) {
+            firebase.database().ref('users/' + userId).set({
+                username: name,
+                email: email,
+                profile_picture : imageUrl
+            });
+        }
+
+        firebase.analytics();
+
+    </script>
+    </body>
+
+</html>
