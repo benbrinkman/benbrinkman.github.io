@@ -97,7 +97,7 @@
                 var source="<td class='sourceRow'>"+feats[i].source+"</td>";
                 var rowEnd = "</tr>";
                 
-                htmlTable = htmlTable.concat(row, name, prereq, rowEnd);
+                htmlTable = htmlTable.concat(row, name, description, rowEnd);
             }
             htmlTable += "</table>";
             textArea.innerHTML = htmlTable;
