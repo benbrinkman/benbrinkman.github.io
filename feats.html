@@ -88,7 +88,7 @@
             var i;
             //set first row of table
 //            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Prerequisites</th><th>Description</th><th>Source</th></tr>"; 
-            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Description</th></tr>"; 
+            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Prerequisites</th><th>Description</th></tr>"; 
             for(i=0; i<len;i++){
                 var row = "<tr>";
                 var name="<td class='nameRow'>"+feats[i].name+"</td>";
@@ -97,7 +97,7 @@
                 var source="<td class='sourceRow'>"+feats[i].source+"</td>";
                 var rowEnd = "</tr>";
                 
-                htmlTable = htmlTable.concat(row, name, description, rowEnd);
+                htmlTable = htmlTable.concat(row, name, , prerequisite, description, rowEnd);
             }
             htmlTable += "</table>";
             textArea.innerHTML = htmlTable;
