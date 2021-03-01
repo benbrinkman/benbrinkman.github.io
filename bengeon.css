@@ -1,13 +1,13 @@
 body{
     padding:0;
     margin:0;
-    background-color:pink;
+    background-color:#a9a9a9;
 }
 
 #header{
 /*    height:100px;*/
     padding:5px;
-    background-color:#232323;
+    background-color:#393959;
     width:100%;
     color:white;
     text-align:center;
@@ -23,7 +23,7 @@ body{
     font-family: 'Fraunces', serif;
     font-style:italic;
     font-weight:100;
-    font-size:14px
+    font-size:16px
 }
 
 #content{
@@ -77,4 +77,5 @@ body{
 
 .nameRow{
     font-weight:600;
+    color:#393959;
 }
