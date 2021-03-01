@@ -27,8 +27,9 @@ body{
 }
 
 #content{
-    width:80%;
-    margin-left:10%;
+    width:60%;
+    margin-left:20%;
+    margin-top:40px;
     background-color:#fafafa;
     border:none;
 /*    border: 0px solid #fff;*/
@@ -58,6 +59,20 @@ body{
 
 #feats td, th{
     padding: 12px;
+}
+
+#feats td td, th{
+    padding:0px;
+    padding-top:3px;
+    
+}
+
+#feats p, ul{
+    margin:8px;
+}
+
+#feats td table{
+    padding-bottom:5px;
 }
 
 .nameRow{

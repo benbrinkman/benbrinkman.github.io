@@ -15,7 +15,11 @@
             <h2>Ben's Dungeons &amp; Dragons lists and things</h2>
         </div>
         <div id='content'>
-            <p id='texttest'>this is some test text</p>
+            <div id='filterBar'>
+            </div>
+            <div id='tableContainer'>
+                <p id='texttest'>this is some test text</p>
+            </div>
         </div>
     
     
@@ -79,12 +83,13 @@
         };
         
         
-        var testVar = firebase.database().ref('/0/0/feats/').once('value').then(function(snapshot) {
+        
+        var testVar = firebase.database().ref('/feat/').once('value').then(function(snapshot) {
             feats = snapshotToArray(snapshot);
             
             var len = feats.length;
             var randomIndex = Math.floor(Math.random() * len);
-            var textArea = document.getElementById("content");
+            var textArea = document.getElementById("tableContainer");
             var i;
             //set first row of table
 //            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Prerequisites</th><th>Description</th><th>Source</th></tr>"; 
@@ -92,12 +97,13 @@
             for(i=0; i<len;i++){
                 var row = "<tr>";
                 var name="<td class='nameRow'>"+feats[i].name+"</td>";
-                var prereq="<td class='prerequisitesRow'>"+feats[i].prerequisite+"</td>";
-                var desc="<td class='descriptionRow'>"+feats[i].description+"</td>";
-                var source="<td class='sourceRow'>"+feats[i].source+"</td>";
+                var prereq="<td class='prerequisitesRow'><p>"+feats[i].prerequisite+"</p></td>";
+                var desc="<td class='descriptionRow'>"+feats[i].html+"</td>";
+                var ability="<td class='abilityRow'><p>"+feats[i].ability+"</p></td>";
+                var source="<td class='sourceRow'><p>"+feats[i].source+"</p></td>";
                 var rowEnd = "</tr>";
                 
-                htmlTable = htmlTable.concat(row, name, prerequisite, description, rowEnd);
+                htmlTable = htmlTable.concat(row, name, prereq, desc, source, ability, rowEnd);
             }
             htmlTable += "</table>";
             textArea.innerHTML = htmlTable;
