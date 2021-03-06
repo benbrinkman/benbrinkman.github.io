@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bengeons &amp; Dragons</title>
+        <!--<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="cards.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,100&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <div id="header">
+            <h1>Welcome to the Bengeon</h1>
+            <h2>Ben's Dungeons &amp; Dragons lists and things</h2>
+        </div>
+        <div id='content'>
+            
+        </div>
+        
+        
+        <!-- Draggable DIV -->
+        <div class="dragcard">
+            <div class="card-container">
+                <div class="creature-heading">
+                    <h1 id="monster-name">Spawn of Ammit</h1>
+                    <h2 id="monster-type">Large fiend (demon), chaotic evil</h2>
+                </div> <!-- creature heading -->
+                <svg height="5" width="100%" class="tapered-rule">
+                    <polyline points="0,0 500,2.5 0,5"></polyline>
+                </svg>
+                <div class="top-stats">
+                    <div class="property-line first">
+                        <h4>Armor Class</h4>
+                        <p id="armor-class">17 (natural armor)</p>
+                    </div> <!-- property line -->
+                    <div class="property-line">
+                        <h4>Hit Points</h4>
+                        <p id="hit-points">93 (11d10 + 33)</p>
+                    </div> <!-- property line -->
+                    <div class="property-line last">
+                        <h4>Speed</h4>
+                        <p id="speed">30 ft., swim 50 ft.</p>
+                    </div> <!-- property line -->
+                    <svg height="5" width="100%" class="tapered-rule">
+                        <polyline points="0,0 500,2.5 0,5"></polyline>
+                    </svg>
+                    <div class="scores">
+                        <div class="scores-strength">
+                            <h4>STR</h4><br>
+                            <p id="strpts">21 (+5)</p>
+                        </div> <!-- scores strength -->
+                        <div class="scores-dexterity">
+                            <h4>DEX</h4><br>
+                            <p id="dexpts">13 (+1)</p>
+                        </div> <!-- scores dexterity -->
+                        <div class="scores-constitution">
+                            <h4>CON</h4><br>
+                            <p id="conpts">17 (+3)</p>
+                        </div> <!-- scores constitution -->
+                        <div class="scores-intelligence">
+                            <h4>INT</h4><br>
+                            <p id="intpts">10 (+0)</p>
+                        </div> <!-- scores intelligence -->
+                        <div class="scores-wisdom">
+                            <h4>WIS</h4><br>
+                            <p id="wispts">17 (+3)</p>
+                        </div> <!-- scores wisdom -->
+                        <div class="scores-charisma">
+                            <h4>CHA</h4><br>
+                            <p id="chapts">7 (-2)</p>
+                        </div> <!-- scores charisma -->
+                    </div> <!-- scores -->
+                    <svg height="5" width="100%" class="tapered-rule">
+                        <polyline points="0,0 500,2.5 0,5"></polyline>
+                    </svg>
+                    <div id="properties-list">
+                        <div class="property-line first">
+                            <div>
+                                <h4>Skills</h4> 
+                                <p>Athletics +9, Insight +11, Perception +7</p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Damage Resistances</h4> 
+                                <p>cold, fire, lightning, necrotic; bludgeoning, piercing, and slashing from nonmagical attacks
+                                </p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Damage Immunities</h4> 
+                                <p>poison</p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Condition Immunities</h4> 
+                                <p>poisoned</p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Senses</h4> 
+                                <p>darkvision 120 ft., passive Perception 17</p>
+                            </div>
+                        </div><!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Languages</h4> 
+                                <p>understands Abyssal but cannot speak</p>
+                            </div>
+                        </div><!-- property line --></div>
+                    <div id="challenge-rating-line" class="property-line last">
+                        <h4>Challenge</h4>
+                        <p id="challenge-rating">9 (5,000 XP)</p>
+                    </div> <!-- property line -->
+                </div> 
+                <!-- top stats -->
+                <svg height="5" width="100%" class="tapered-rule">
+                    <polyline points="0,0 500,2.5 0,5"></polyline>
+                </svg>
+                <div class="actions">
+                        <div class="property-block">
+                            <div>
+                                <h4>Hold Breath.</h4>
+                                <p> The Spawn of Ammit can hold its breath for 30 minutes.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                        <div class="property-block">
+                            <div>
+                                <h4>Insightful Gaze.</h4>
+                                <p> The Spawn of Ammit knows the true alignment of every creature it sees.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                        <div class="property-block">
+                            <div>
+                                <h4>Innate Spellcasting.</h4>
+                                <p> The Spawn of Ammit's innate spellcasting ability is Wisdom (spell save DC 15, +7 to hit with spell attacks). It can innately cast the following spells, requiring no material components:</p>
+                            </div>
+                            <div class="reverse-indent"> <p>At will: <i>spare the dying</i></p>
+                            </div>
+                            <div class="reverse-indent"> <p>3/day each: <i>bane, false life (3rd level)</i></p>
+                            </div>
+                        <div class="reverse-indent"> <p>1/day: <i>revivify</i></p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                </div> 
+                <!-- actions -->
+                <div class="actions">
+                    <div id="traits-list-right">
+                        <h3>Actions</h3>
+                        <div class="property-block">
+                            <div>
+                                <h4>Multiattack.</h4>
+                                <p> The spawn of Ammit makes two attacks: one with its bite and one with its claws.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                        <div class="property-block">
+                            <div>
+                                <h4>Bite.</h4>
+                                <p> 
+                                    <i>Melee Weapon Attack:</i> +9 to hit, reach 5 ft., one target. <i>Hit:</i> 21 (3d10 + 5) piercing damage, and the target is grappled (escape DC 17). Until this grapple ends, the target is restrained, and the spawn of Ammit can't bite another target.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                        <div class="property-block">
+                            <div>
+                                <h4>Claws.</h4>
+                                <p> <i>Melee Weapon Attack:</i> +9 to hit, reach 5 ft., one target not grappled by the spawn of Ammit. <i>Hit:</i> 8 (2d6 + 1) slashing damage. If the target is a creature, it must succeed on a DC 17 Strength saving throw or be knocked prone.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                        <div class="property-block">
+                            <div>
+                                <h4>Devour Soul (Recharge 5-6).</h4>
+                                <p> The Spawn of Ammit attempts to devour the soul of a creature is has restrained in its mouth. The target must succeed on a DC 15 Wisdom saving throw or take 54 (12d8) force damage. If this damage reduces the target to 0 hit points, the Spawn of Ammit kills the target and devours its soul. A creature devoured by a Spawn of Ammit can be restored to life only by a wish spell. Consuming a soul empowers the Spawn of Ammit, increasing its AC by 1 and allowing it to make 1 additional claw attack when using its multiattack. These benefits stack 3 times, to a maximum of +3 to its AC and 4 total claw attacks. The Spawn of Ammit retains these benefits for 24 hours.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                    </div>
+                </div> <!-- actions -->
+            </div>
+        </div>
+    
+    
+    
+    
+    
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+        apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
+        authDomain: "benbrinkman-1d46e.firebaseapp.com",
+        databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
+        projectId: "benbrinkman-1d46e",
+        storageBucket: "benbrinkman-1d46e.appspot.com",
+        messagingSenderId: "221991902624",
+        appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
+        measurementId: "G-YF3NDT9KGK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+
+        Tiles(1, 3);
+        
+        function Tiles(margin, numTiles){
+            var tile = document.getElementsByClassName("tile");
+            var tileWidth = (100-((numTiles+1)*margin))/numTiles;
+            for (var i = 0; i < tile.length; i++){
+                tile[i].style.marginTop=margin+"%";
+                tile[i].style.marginLeft=margin+"%";
+                tile[i].style.width=tileWidth+"%";
+            }
+            
+        }
+        
+        
+        dragElement(document.getElementsByClassName("dragcard")[0]);
+
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            
+            elmnt.onmousedown = dragMouseDown;
+            
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                // stop moving when mouse button is released:
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        
+//        const numberOfUsers = 116;
+//        const randomIndex = Math.floor(Math.random() * numberOfUsers);
+//
+        function snapshotToArray(snapshot) {
+            var returnArr = [];
+
+            snapshot.forEach(function(childSnapshot) {
+                var item = childSnapshot.val();
+                item.key = childSnapshot.key;
+
+                returnArr.push(item);
+            });
+            return returnArr;
+        };
+        
+        
+        
+        var testVar = firebase.database().ref('/feat/').once('value').then(function(snapshot) {
+            feats = snapshotToArray(snapshot);
+            var len = feats.length;
+            var i;
+            for(i=0; i<len;i++){
+                
+            }
+            
+        });
+        
+        
+        function writeUserData(userId, name, email, imageUrl) {
+            firebase.database().ref('users/' + userId).set({
+                username: name,
+                email: email,
+                profile_picture : imageUrl
+            });
+        }
+
+        firebase.analytics();
+
+    </script>
+    </body>
+
+</html>

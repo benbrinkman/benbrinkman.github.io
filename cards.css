@@ -1,0 +1,148 @@
+html {
+    overflow-y: scroll;
+}
+
+body{
+    padding:0;
+    margin:0;
+    background-color:#a9a9a9;
+}
+
+#header{
+    /*    height:100px;*/
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:#393959;
+    width:100%;
+    color:white;
+    text-align:center;
+}
+
+#header h1{
+    margin:0;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+}
+
+
+#header h2{
+    margin:0;
+    font-family: 'Fraunces', serif;
+    font-style:italic;
+    font-weight:100;
+    font-size:16px
+}
+
+.dragcard {
+    position: absolute;
+    z-index: 9;
+    background-color: white;
+    border: 1px solid #d3d3d3;
+    text-align: left;
+/*    font-family: 'Arial', serif;*/
+    font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    width:500px;
+    padding:10px;
+    padding-bottom:0px;
+    cursor: move;
+}
+
+
+.dragcard h1{
+    font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+/*    color: #922610;*/
+    font-size: 25px;
+    line-height: 1.2em;
+    margin:0;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.dragcard h2{
+    font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 12px;
+    line-height: 1.2em;
+    margin: 0;
+}
+
+.dragcard h3{
+    border-bottom: 2px solid black;
+/*    color: #7A200D;*/
+    font-size: 21px;
+    font-variant: small-caps;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin:0;
+    padding:0;
+    text-indent: 5px;
+}
+
+
+.dragcard h4{
+    display: inline;
+    margin: 0;
+/*    color: #922610;*/
+    font-size: 12.5px;
+    line-height: 1.2em;
+}
+
+.scores p{
+    margin: 0 0 10px;
+    /*    color: #922610;*/
+    font-size: 12.5px;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+.property-block{
+    margin-bottom: 10px;
+}
+
+.property-block h4{
+    font-style: italic;
+}
+
+.dragcard p{
+    display: inline;
+    margin: 0;
+/*    color: #922610;*/
+    font-size: 12.5px;
+    line-height: 1.2em;
+}
+
+.scores {
+    text-align: center;
+/*    color: #922610;*/
+}
+
+.scores>div {
+    display: inline-block;
+    vertical-align: middle;
+    width: 15.5%;
+    min-width: 40px;
+    font-size: 12px;
+    line-height: 1em;
+}
+
+.scores h4 {
+    margin: 10px 0 2px;
+    font-size: 14px;
+    line-height: 1.2em;
+    text-transform: uppercase;
+/*    color: #7A200D;*/
+}
+
+.scores p {
+    margin: 0 0 10px;
+    line-height: 1.2em;
+}
+
+.reverse-indent {
+/*    text-indent: -1em;*/
+    padding-left: 1em;
+}
+
+

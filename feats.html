@@ -14,6 +14,11 @@
             <h1>Welcome to the Bengeon</h1>
             <h2>Ben's Dungeons &amp; Dragons lists and things</h2>
         </div>
+        <div id="searchContainer">
+            <input type="search" id="searchBar" onkeyup="SearchFilter()">
+            <input type ="checkbox" id="ERLW" onClick="HideSourceRows('ERLW')" checked=true class = "checkboxStyle">
+        </div>
+        
         <div id='content'>
             <div id='filterBar'>
             </div>
@@ -93,17 +98,23 @@
             var i;
             //set first row of table
 //            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Prerequisites</th><th>Description</th><th>Source</th></tr>"; 
-            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Prerequisites</th><th>Description</th></tr>"; 
+            var htmlTable = "<table id='feats' cellspacing='0' cellpadding='0'><tr><th>Name</th><th>Description</th></tr>"; 
             for(i=0; i<len;i++){
                 var row = "<tr>";
-                var name="<td class='nameRow'>"+feats[i].name+"</td>";
-                var prereq="<td class='prerequisitesRow'><p>"+feats[i].prerequisite+"</p></td>";
-                var desc="<td class='descriptionRow'>"+feats[i].html+"</td>";
-                var ability="<td class='abilityRow'><p>"+feats[i].ability+"</p></td>";
-                var source="<td class='sourceRow'><p>"+feats[i].source+"</p></td>";
+                
+                if(feats[i].prerequisite == "None"){
+                    var name="<td class='nameRow' class='filter'><h3>"+feats[i].name+"</h3><small>Source: "+feats[i].source+"</small></td>";
+                }else{
+                    var name="<td class='nameRow' class='filter'><h3>"+feats[i].name+"</h3><i>Prerequisite: "+feats[i].prerequisite+"</i><br>"+"<small>Source: "+feats[i].source+"</small></td>";
+                }
+                
+                var prereq="<td class='prerequisitesRow' class='filter'><p>"+feats[i].prerequisite+"</p></td>";            
+                var desc="<td class='descriptionRow' class='filter'>"+feats[i].html+"</td>";
+                var ability="<td class='abilityRow' style='display:none;' class='filter' ><p>"+feats[i].ability+"</p></td>";
+                var source="<td class='sourceRow' class='filter'><p>"+feats[i].source+"</p></td>";
                 var rowEnd = "</tr>";
                 
-                htmlTable = htmlTable.concat(row, name, prereq, desc, source, ability, rowEnd);
+                htmlTable = htmlTable.concat(row, name, desc, rowEnd);
             }
             htmlTable += "</table>";
             textArea.innerHTML = htmlTable;
@@ -111,6 +122,90 @@
         });
         
         
+        function Input(){
+            var table, checkboxSource, searchSource, tableRows;
+            table = document.getElementById("feats");
+            checkboxSource[0] = document.getElementById("ERLW");
+            searchSource = document.getElementById("searchBar");
+            
+            tableRows = table.getElementsByTagName("tr");
+
+
+            //TO DO: make ros appear again using the toggle function, only if checkbox checked and run a check on the search bar content
+            //TO DO: Make the search bar check its own function
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                ToggleRow(tr[i], "ERLW", true);
+            }
+            //Se
+        }
+        
+        //UNCHECK UNDO
+        function HideSourceRows(_src){
+            var input, table, tr, i;
+            input = document.getElementById("ERLW");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("feats");
+            tr = table.getElementsByTagName("tr");
+            
+            
+            //TO DO: make ros appear again using the toggle function, only if checkbox checked and run a check on the search bar content
+            //TO DO: Make the search bar check its own function
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                ToggleRow(tr[i], "ERLW", true);
+            }
+            //SearchFilter()
+        }
+        
+        
+        function ToggleRow(tr, _src, isHidingRow){
+            td = tr.getElementsByTagName("td")[0];
+            if(td){
+                src = td.getElementsByTagName("small")[0];
+                if(src){
+                    if(src.textContent === "Source: "+_src){
+                        if(document.getElementById(_src).checked === false && isHidingRow){
+                            tr.style.display = "none";
+                        }
+                        if(document.getElementById(_src).checked === true && !isHidingRow){
+                            tr.style.display = "";
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        function SearchFilter() {
+            var input, filter, table, tr, td, i,j, txtValue, queryFound;
+            input = document.getElementById("searchBar");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("feats");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                if(td){
+                    //console.log(td);
+                    queryFound = false;
+                    for (j = 0; j < td.length; j++) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            queryFound = true;
+                        }   
+                    }
+                    if(queryFound){
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+                
+            }
+            //HideSourceRows("ERLW");
+        }
 
 
 

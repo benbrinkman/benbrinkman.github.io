@@ -1,0 +1,72 @@
+speed
+(#ft in __ form)
+(#ft and type #ft in __ form)
+
+blindsight 30ft. or 10ft. while deafened (blind beyond this radius)
+
+
+languages
+-
+Abyssal
+Aquan
+Auran
+Blink Dog
+Bullywug
+Celestial
+Common
+Deep Speach
+Draconic
+Druidic
+Dwarvish
+Elvish
+Giant
+Giant Eagle
+Giant Elk
+Giant Owl
+Gith
+Gnoll
+Gnomish
+Goblin
+Grell
+Hook Horror
+Ignan
+Infernal
+Modron
+Orc
+Otyugh
+Primordial
+Sahuagin
+Slaad
+Sphinx
+Sylvan
+Terran
+Thri-kreen
+Thieves' cant
+Troglodyte
+Undercommon
+Umber Hulk
+Winter Wolf
+Worg
+Yeti
+
+All
+__ plus any two languages
+
+any one language (usually Common) (any race)
+any (one, two, four, six) language/s (any race)
+
+(can't speak in __ form) (shapechanger)
+
+understands __ but speaks only through the use of the Mimicry trait
+
+understands __ but can't speak (it) (can be with other languages it can speak)
+one language known by its creator (construct, plant)
+understands the languages of its creator but can't speak (construct, plant)
+understands commands given in any language but can't speak (construct...?)
+plus one other language
+plus up to __ other languages
+understands the languages it knew in life but can't speak (undead)
+the languages it knew in life (undead)
+telepathy (60, 120)ft. (works only with creatures that understand ___)
+
+
