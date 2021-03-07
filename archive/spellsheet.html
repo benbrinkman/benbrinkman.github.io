@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spellsheet Generator</title>
+        <!--<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="spellsheet.css"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    </head>
+<body>
+    
+    <div id="topBar">
+        <div class = "title">Dungeons &amp; Dragons &amp; Databases</div>
+    </div>
+    
+    <div id="mainContent">
+
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+        apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
+        authDomain: "benbrinkman-1d46e.firebaseapp.com",
+        databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
+        projectId: "benbrinkman-1d46e",
+        storageBucket: "benbrinkman-1d46e.appspot.com",
+        messagingSenderId: "221991902624",
+        appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
+        measurementId: "G-YF3NDT9KGK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+
+
+        
+        
+        
+
+        var testVar = firebase.database().ref('/spells/1').once('value').then(function(snapshot) {
+            //var username = (snapshot.val() && snapshot.val().fighterclass) || 'Anonymous';
+            var username = snapshot.val().area;
+            document.getElementById("mainContent").innerHTML = username;
+            console.log(username);
+        });
+
+
+
+        function writeUserData(userId, name, email, imageUrl) {
+            firebase.database().ref('users/' + userId).set({
+                username: name,
+                email: email,
+                profile_picture : imageUrl
+            });
+        }
+
+        firebase.analytics();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+.card-container {
+/*    position: absolute;*/
+    float:left;
+    z-index: 9;
+    background-color: white;
+    border: 1px solid #d3d3d3;
+    text-align: left;
+    /*    font-family: 'Arial', serif;*/
+    font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    width:500px;
+    padding:10px;
+    padding-bottom:0px;
+}
+
+.card-container h1{
+    font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+    /*    color: #922610;*/
+    font-size: 25px;
+    line-height: 1.2em;
+    margin:0;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.card-container h2{
+    font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 12px;
+    line-height: 1.2em;
+    margin: 0;
+}
+
+.card-container h3{
+    border-bottom: 2px solid black;
+    /*    color: #7A200D;*/
+    font-size: 21px;
+    font-variant: small-caps;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin:0;
+    padding:0;
+    text-indent: 5px;
+}
+
+.card-container h4{
+    display: inline;
+    margin: 0;
+    /*    color: #922610;*/
+    font-size: 12.5px;
+    line-height: 1.2em;
+}
+
+.scores p{
+    margin: 0 0 10px;
+    /*    color: #922610;*/
+    font-size: 12.5px;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+.property-block{
+    margin-bottom: 10px;
+}
+
+.property-block h4{
+    font-style: italic;
+}
+
+.card-container p{
+    display: inline;
+    margin: 0;
+    /*    color: #922610;*/
+    font-size: 12.5px;
+    line-height: 1.2em;
+}
+
+.scores {
+    text-align: center;
+    /*    color: #922610;*/
+}
+
+.scores>div {
+    display: inline-block;
+    vertical-align: middle;
+    width: 15.5%;
+    min-width: 40px;
+    font-size: 12px;
+    line-height: 1em;
+}
+
+.scores h4 {
+    margin: 10px 0 2px;
+    font-size: 14px;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    /*    color: #7A200D;*/
+}
+
+.scores p {
+    margin: 0 0 10px;
+    line-height: 1.2em;
+}
+
+.reverse-indent {
+    /*    text-indent: -1em;*/
+    padding: 5px 0px 5px 15px;
+}
+
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bengeons &amp; Dragons</title>
+        <link rel="stylesheet" type="text/css" href="CSS.css">
+        <link rel="stylesheet" type="text/css" href="BengeonHeader.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,100&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="header">
+            <h1>Welcome to the Bengeon</h1>
+            <h2>Ben's Dungeons &amp; Dragons lists and things</h2>
+        </div>
+
+        <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+
+        <script>
+            ////////////////////////
+            //vv DATABASE STUFF vv//
+            ////////////////////////
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
+                authDomain: "benbrinkman-1d46e.firebaseapp.com",
+                databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
+                projectId: "benbrinkman-1d46e",
+                storageBucket: "benbrinkman-1d46e.appspot.com",
+                messagingSenderId: "221991902624",
+                appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
+                measurementId: "G-YF3NDT9KGK"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var database = firebase.database();
+
+            function snapshotToArray(snapshot) {
+                var returnArr = [];
+                snapshot.forEach(function(childSnapshot) {
+                    var item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+                    returnArr.push(item);
+                });
+                return returnArr;
+            };
+            ////////////////////////
+            //^^ DATABASE STUFF ^^//
+            ////////////////////////            
+            
+            
+            
+            var testVar = firebase.database().ref('/feat/').once('value').then(function(snapshot) {
+                feats = snapshotToArray(snapshot);
+                //console.log(feats[0].name);
+            });
+
+            function writeUserData(userId, name, email, imageUrl) {
+                firebase.database().ref('users/' + userId).set({
+                    username: name,
+                    email: email,
+                    profile_picture : imageUrl
+                });
+            }
+            firebase.analytics();
+        </script>
+    </body>
+</html>

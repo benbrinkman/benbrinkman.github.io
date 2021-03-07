@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bengeons &amp; Dragons</title>
+        <link rel="stylesheet" type="text/css" href="Creatures.css">
+        <link rel="stylesheet" type="text/css" href="BengeonHeader.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,100&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="header">
+            <h1>Welcome to the Bengeon</h1>
+            <h2>Ben's Dungeons &amp; Dragons lists and things</h2>
+        </div>
+
+
+        <div id="content">
+            <div class="card-container">
+                <div class="creature-heading">
+                    <h1 id="monster-name">Spawn of Ammit</h1>
+                    <h2 id="monster-type">Large fiend (demon), chaotic evil</h2>
+                </div>
+                <svg height="5" width="100%" class="tapered-rule">
+                    <polyline points="0,0 500,2.5 0,5"></polyline>
+                </svg>
+                <div class="top-stats">
+                    <div class="property-line first">
+                        <h4>Armor Class</h4>
+                        <p id="armor-class">17 (natural armor)</p>
+                    </div> <!-- property line -->
+                    <div class="property-line">
+                        <h4>Hit Points</h4>
+                        <p id="hit-points">93 (11d10 + 33)</p>
+                    </div> <!-- property line -->
+                    <div class="property-line last">
+                        <h4>Speed</h4>
+                        <p id="speed">30 ft., swim 50 ft.</p>
+                    </div> <!-- property line -->
+                    <svg height="5" width="100%" class="tapered-rule">
+                        <polyline points="0,0 500,2.5 0,5"></polyline>
+                    </svg>
+                    <div class="scores">
+                        <div class="scores-strength">
+                            <h4>STR</h4><br>
+                            <p id="strpts">21 (+5)</p>
+                        </div> <!-- scores strength -->
+                        <div class="scores-dexterity">
+                            <h4>DEX</h4><br>
+                            <p id="dexpts">13 (+1)</p>
+                        </div> <!-- scores dexterity -->
+                        <div class="scores-constitution">
+                            <h4>CON</h4><br>
+                            <p id="conpts">17 (+3)</p>
+                        </div> <!-- scores constitution -->
+                        <div class="scores-intelligence">
+                            <h4>INT</h4><br>
+                            <p id="intpts">10 (+0)</p>
+                        </div> <!-- scores intelligence -->
+                        <div class="scores-wisdom">
+                            <h4>WIS</h4><br>
+                            <p id="wispts">17 (+3)</p>
+                        </div> <!-- scores wisdom -->
+                        <div class="scores-charisma">
+                            <h4>CHA</h4><br>
+                            <p id="chapts">7 (-2)</p>
+                        </div> <!-- scores charisma -->
+                    </div> <!-- scores -->
+                    <svg height="5" width="100%" class="tapered-rule">
+                        <polyline points="0,0 500,2.5 0,5"></polyline>
+                    </svg>
+                    <div id="properties-list">
+                        <div class="property-line first">
+                            <div>
+                                <h4>Skills</h4> 
+                                <p>Athletics +9, Insight +11, Perception +7</p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Damage Resistances</h4> 
+                                <p>cold, fire, lightning, necrotic; bludgeoning, piercing, and slashing from nonmagical attacks
+                                </p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Damage Immunities</h4> 
+                                <p>poison</p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Condition Immunities</h4> 
+                                <p>poisoned</p>
+                            </div>
+                        </div>
+                        <!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Senses</h4> 
+                                <p>darkvision 120 ft., passive Perception 17</p>
+                            </div>
+                        </div><!-- property line -->
+                        <div class="property-line">
+                            <div>
+                                <h4>Languages</h4> 
+                                <p>understands Abyssal but cannot speak</p>
+                            </div>
+                        </div><!-- property line --></div>
+                    <div id="challenge-rating-line" class="property-line last">
+                        <h4>Challenge</h4>
+                        <p id="challenge-rating">9 (5,000 XP)</p>
+                    </div> <!-- property line -->
+                </div> 
+                <svg height="5" width="100%" class="tapered-rule"><polyline points="0,0 500,2.5 0,5"></polyline></svg>
+                <div class="actions">
+                    <div class="property-block">
+                        <div>
+                            <h4>Hold Breath.</h4>
+                            <p> The Spawn of Ammit can hold its breath for 30 minutes.</p>
+                        </div>
+                    </div> 
+                    <!-- property block -->
+                    <div class="property-block">
+                        <div>
+                            <h4>Insightful Gaze.</h4>
+                            <p> The Spawn of Ammit knows the true alignment of every creature it sees.</p>
+                        </div>
+                    </div> 
+                    <!-- property block -->
+                    <div class="property-block">
+                        <div>
+                            <h4>Innate Spellcasting.</h4>
+                            <p> The Spawn of Ammit's innate spellcasting ability is Wisdom (spell save DC 15, +7 to hit with spell attacks). It can innately cast the following spells, requiring no material components:</p>
+                        </div>
+                        <div class="reverse-indent"> <p>At will: <i>spare the dying</i></p>
+                        </div>
+                        <div class="reverse-indent"> <p>3/day each: <i>bane, false life (3rd level)</i></p>
+                        </div>
+                        <div class="reverse-indent"> <p>1/day: <i>revivify</i></p>
+                        </div>
+                    </div> 
+                    <!-- property block -->
+                </div> 
+                <!-- actions -->
+                <div class="actions">
+                    <h3>Actions</h3>
+                    <div class="property-block">
+                        <div>
+                            <h4>Multiattack.</h4>
+                            <p> The spawn of Ammit makes two attacks: one with its bite and one with its claws.</p>
+                        </div>
+                    </div> 
+                    <!-- property block -->
+                    <div class="property-block">
+                        <div>
+                            <h4>Bite.</h4>
+                            <p> 
+                                <i>Melee Weapon Attack:</i> +9 to hit, reach 5 ft., one target. <i>Hit:</i> 21 (3d10 + 5) piercing damage, and the target is grappled (escape DC 17). Until this grapple ends, the target is restrained, and the spawn of Ammit can't bite another target.</p>
+                        </div>
+                    </div> 
+                    <!-- property block -->
+                    <div class="property-block">
+                        <div>
+                            <h4>Claws.</h4>
+                            <p> <i>Melee Weapon Attack:</i> +9 to hit, reach 5 ft., one target not grappled by the spawn of Ammit. <i>Hit:</i> 8 (2d6 + 1) slashing damage. If the target is a creature, it must succeed on a DC 17 Strength saving throw or be knocked prone.</p>
+                        </div>
+                    </div> 
+                    <!-- property block -->
+                    <div class="property-block">
+                        <div>
+                            <h4>Devour Soul (Recharge 5-6).</h4>
+                            <p> The Spawn of Ammit attempts to devour the soul of a creature is has restrained in its mouth. The target must succeed on a DC 15 Wisdom saving throw or take 54 (12d8) force damage. If this damage reduces the target to 0 hit points, the Spawn of Ammit kills the target and devours its soul. A creature devoured by a Spawn of Ammit can be restored to life only by a wish spell. Consuming a soul empowers the Spawn of Ammit, increasing its AC by 1 and allowing it to make 1 additional claw attack when using its multiattack. These benefits stack 3 times, to a maximum of +3 to its AC and 4 total claw attacks. The Spawn of Ammit retains these benefits for 24 hours.</p>
+                        </div>
+                        <!-- property block -->
+                    </div>
+                </div> <!-- actions -->
+            </div>
+        </div>
+
+
+
+        <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+        <script>
+            ////////////////////////
+            //vv DATABASE STUFF vv//
+            ////////////////////////
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
+                authDomain: "benbrinkman-1d46e.firebaseapp.com",
+                databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
+                projectId: "benbrinkman-1d46e",
+                storageBucket: "benbrinkman-1d46e.appspot.com",
+                messagingSenderId: "221991902624",
+                appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
+                measurementId: "G-YF3NDT9KGK"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var database = firebase.database();
+
+            function snapshotToArray(snapshot) {
+                var returnArr = [];
+                snapshot.forEach(function(childSnapshot) {
+                    var item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+                    returnArr.push(item);
+                });
+                return returnArr;
+            };
+            ////////////////////////
+            //^^ DATABASE STUFF ^^//
+            ////////////////////////            
+
+            var profObj = {
+                '0':'2',
+                '1/8':'2',
+                '1/4':'2',
+                '1/2':'2',
+                '1':'2',
+                '2':'2',
+                '3':'2',
+                '4':'2',
+                '5':'3',
+                '6':'3',
+                '7':'3',
+                '8':'3',
+                '9':'4',
+                '10':'4',
+                '11':'4',
+                '12':'4',
+                '13':'5',
+                '14':'5',
+                '15':'5',
+                '16':'5',
+                '17':'6',
+                '18':'6',
+                '19':'6',
+                '20':'6',
+                '21':'7',
+                '22':'7',
+                '23':'7',
+                '24':'7',
+                '25':'8',
+                '26':'8',
+                '27':'8',
+                '28':'8',
+                '29':'9',
+                '30':'9',
+            }
+            var crObj ={
+                '0':'0',
+                '1/8':'25',
+                '1/4':'50',
+                '1/2':'100',
+                '1':'200',
+                '2':'450',
+                '3':'700',
+                '4':'1100',
+                '5':'1800',
+                '6':'2300',
+                '7':'2900',
+                '8':'3900',
+                '9':'5000',
+                '10':'5900',
+                '11':'7200',
+                '12':'8400',
+                '13':'10000',
+                '14':'11500',
+                '15':'13000',
+                '16':'15000',
+                '17':'18000',
+                '18':'20000',
+                '19':'22000',
+                '20':'25000',
+                '21':'33000',
+                '22':'41000',
+                '23':'50000',
+                '24':'62000',
+                '25':'75000',
+                '26':'90000',
+                '27':'105000',
+                '28':'120000',
+                '29':'135000',
+                '30':'155000',
+            }
+            var sizeObj = {
+                'tiny':'4',
+                'small':'6',
+                'medium':'8',
+                'large':'10',
+                'huge':'12',
+                'gargantuan':'20',
+            }
+            function New(type, content){
+                var newElement = document.createElement(type);
+                if(content){newElement.innerHTML = content;}
+                return newElement;
+                //var variable = (condition) ? (true block) : (false block);
+            }
+            function NewID(type, id, content){
+                var newElement = document.createElement(type);
+                if(id){newElement.id = id;}
+                if(content){newElement.innerHTML = content;}
+                return newElement;
+                //var variable = (condition) ? (true block) : (false block);
+            }
+            function NewClass(type, className, content){
+                var newElement = document.createElement(type);
+                if(className){newElement.className = className;}
+                if(content){newElement.innerHTML = content;}
+                return newElement;
+                //var variable = (condition) ? (true block) : (false block);
+            }
+            function Caps(string){
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+            function AddLine(){
+                var newElement = document.createElement("div");
+                newElement.innerHTML = "<svg height='5' width='100%' class='tapered-rule'><polyline points='0,0 500,2.5 0,5'></polyline></svg>";
+                return newElement;
+            }
+            
+            
+            function CreateStatblock(creature){
+                var content = document.getElementById("content");
+                var cardContainer = NewClass("div","card-container","");
+                var prof = parseInt(profObj[creature.cr]);
+                var passivePerception ="";
+                function GetMod(ability){
+                    var score = creature[ability+"Points"];
+                    var mod = Math.floor((score-10)/2) > 0 ? "+"+Math.floor((score-10)/2):Math.floor((score-10)/2);
+                    //console.log(mod);
+                    return parseInt(mod);
+                }
+                GetMod("str");
+                
+                function Format(str){
+                    var nameReplace = creature.shortName?creature.shortName:creature.name
+                    str = str.replace(/\[MON\]/g, nameReplace);
+                    if(str.replace(/[^_]/g,"").length>0){
+                        console.log(str.replace(/[^_]/g,"").length);
+                        var count = 0;
+                        while(str.replace(/[^_]/g,"").length>0){
+                            count++;
+                            console.log();
+                            str = count%2==1?str.replace(/_/, "[ITALO]"):str.replace(/_/, "[ITALC]");
+                        }
+                    }
+                    str = str.replace(/>/, "[NLN-F]");
+                    str = str.replace(/>/g, "[NLN]");
+                    
+
+                    str = str.replace(/\[NLN\]/g, "</div><div class='reverse-indent'>");
+                    str = str.replace(/\[NLN-F\]/g, "<div class='reverse-indent'>");
+                    str +="</div>";
+                    str = str.replace(/\[ITALO\]/g, "<i>");
+                    str = str.replace(/\[ITALC\]/g, "</i>");
+                    
+                    //TO DO: make variables for saving throws, attack rolls, and modifiers
+                    //TO DO: write replace functions for the rest of the formats https://regex101.com/r/eM6tK2/1
+                    //TO DO: add legendary action
+                    //TO DO: add actions
+                    //TO DO: add lair actions
+                    //TO DO: add regional effects
+                    
+                    
+                    return str;
+                }
+                function CreateHeading(){
+                    var creatureHeading=NewClass("div","creature-heading","");
+                    var monsterName = NewID("h1", "monster-name",creature.name);
+                    var typeContent = creature.size + " " + creature.type;                
+                    if(creature.tag){
+                        typeContent += " ("+creature.tag+")";
+                    }
+                    typeContent = Caps(typeContent+", "+creature.alignment);
+                    var monsterType=NewClass("h2", "monster-type", typeContent);
+                    creatureHeading.appendChild(monsterName);
+                    creatureHeading.appendChild(monsterType);
+                    return creatureHeading;
+                }
+                function CreateTopStats(){
+                    var topStats=NewClass("div", "top-stats", "");
+                    
+                    function NewPropLine(textA, textB, id){
+                        var propLine = NewClass("div", "property-line", "");
+                        var linea = New("h4", textA);
+                        var lineb = NewID("p", id, textB);
+                        propLine.appendChild(linea);
+                        propLine.appendChild(lineb);
+                        return propLine;
+                    }
+                    function GetHP(){
+                        var hpText ="test";
+                        var numDice = creature.hitDice;
+                        var dieSize = sizeObj[creature.size];
+                        var conBonus = GetMod("con") * numDice;
+//                        console.log(conBonus);
+                        var health = Math.floor((((dieSize/2)+0.5)*numDice)+(conBonus));
+                        var mid = "";
+                        //console.log(conBonus);
+                        if(conBonus < 0){
+                            conBonus = conBonus.toString().slice(1);
+                            mid = " - "
+                        }else if (conBonus > 0){
+                            mid = " + "
+                        }else{
+                            mid = conBonus = "";
+                        }
+                        
+                        hpText = health +" ("+numDice+"d"+dieSize+mid+conBonus+")";
+                        return hpText;
+                    }
+                    topStats.appendChild(NewPropLine("Armor Class ", creature.otherArmorDesc, "armor-class"));
+                    topStats.appendChild(NewPropLine("Hit Points ", GetHP(), "hit-points"));
+                    topStats.appendChild(NewPropLine("Speed ", creature.speedDesc, "speed"));
+                    return topStats;
+                }
+                function CreateScores(){
+                    var scores = NewClass("div", "scores", "");
+                    function CreateScoreBlock(ability){
+                        var abilityBlock=NewClass("div", "scores-"+ability,"");
+                        var abilityTitle=New("h4", ability.slice(0,3).toUpperCase());
+                        var br = New("br","");
+
+                        var score = creature[ability.slice(0,3)+"Points"];
+                        mod = GetMod(ability.slice(0,3));
+                        if (mod > 0){
+                            mid = "+"
+                        }else{
+                            mid = "";
+                        }
+                        
+                        score +=" ("+mid+mod+")";
+                        var p =NewID("p", ability.slice(0,3)+"pts", score);
+                        
+                        abilityBlock.appendChild(abilityTitle);
+                        abilityBlock.appendChild(br);
+                        abilityBlock.appendChild(p);
+                        return abilityBlock;
+                        
+                    }
+                    scores.appendChild(CreateScoreBlock("strength"));
+                    scores.appendChild(CreateScoreBlock("dexterity"));
+                    scores.appendChild(CreateScoreBlock("constitution"));
+                    scores.appendChild(CreateScoreBlock("intellegence"));
+                    scores.appendChild(CreateScoreBlock("wisdom"));
+                    scores.appendChild(CreateScoreBlock("charisma"));
+                    return scores;
+                }
+                function CreateProperties(){
+                    var propertiesList =NewClass("div", "properties-list", "");
+                    function NewPropLine(h4, p){
+                        var propLine=NewClass("div", "property-line", "");
+                        var head =New("h4",h4);
+                        var body =New("p",p);
+                        propLine.appendChild(head);
+                        propLine.appendChild(body);
+                        return propLine;
+                    }
+                    
+                    
+                    function GetSaves(){
+                        var saves = creature.sthrows;
+                        var len = saves.length;
+                        var i;
+                        var text = " ";
+                        if(len > 0){
+                            for(i=0; i<len; i++){
+                                var bonus = prof + GetMod(saves[i].name);
+                                bonus = bonus < 0 ? bonus:"+" +bonus;
+                                var saveText = Caps(saves[i].name) + " " + bonus;
+                                if(i!==len-1){
+                                    saveText += ", ";
+                                }
+                                text+=saveText;
+                            }
+                        }
+                        return text;
+                    }
+                    if(creature.sthrows){propertiesList.appendChild(NewPropLine("Saving Throws",GetSaves()))}
+
+                    
+                    function GetSkills(){
+                        var skills = creature.skills;
+                        var len = skills.length;
+                        var i;
+                        var text = " ";
+                        if(len > 0){
+                            for(i=0; i<len; i++){
+                                var skillName = Caps(skills[i].name);
+                                //var skillAbility = skills[i].stat+"Points";
+                                //console.log(skills[i].stat)
+                                var bonus = prof + GetMod(skills[i].stat);
+                                bonus = skills[i].note?bonus+prof:bonus;
+                                
+                                if(skillName === "Perception"){passivePerception = bonus;}
+                                bonus = bonus < 0 ? bonus:"+" +bonus;
+                                var skillText = skillName + " " + bonus;
+                                if(i!==len-1){
+                                    skillText += ", ";
+                                }
+                                //console.log(skillText);
+                                text+=skillText;
+                            }
+                        }
+                        return text;
+                    }
+                    if(creature.skills){propertiesList.appendChild(NewPropLine("Skills",GetSkills()))}
+
+                    
+                    function Damages(){
+                        var dmg, i,len ="";
+                        dmg = creature.damagetypes;
+
+                        function createDmgLine(str){
+                            i=0;
+                            len = dmg.length;
+                            var text ="";
+                            for(i=0;i<len;i++){
+                                if(dmg[i].type === str.substring(0,1)){
+                                    text += " "+dmg[i].name +",";
+                                }
+                            }                                
+                            text = text !==""?text.substring(0, text.length - 1):"";
+
+                            if(creature.specialdamage){
+                                i=0;
+                                len = creature.specialdamage.length;
+                                for(i=0;i<len;i++){
+                                    if(creature.specialdamage[i].type === str.substring(0,1)){
+                                        text += "; " + creature.specialdamage[i].name;
+                                    }
+                                }
+                            }
+                            if(text !== ""){
+                                propertiesList.appendChild(NewPropLine("Damage " + Caps(str),text));
+
+
+                            }
+                        }
+                        if(creature.damagetypes){
+                            createDmgLine("vulnerabilities");
+                            createDmgLine("resistances");
+                            createDmgLine("immunities");
+                        }
+
+
+                    }
+                    Damages();
+                    
+                    
+                    if(creature.conditions){
+                        var i =0;
+                        var len=creature.conditions.length;
+                        var text = "";
+                        for(i=0;i<len;i++){
+                            text += " " + creature.conditions[i].name +",";
+                        }
+                        text = text.substring(0,text.length-1);
+                        propertiesList.appendChild(NewPropLine("Condition Immunities", text));
+                    }
+                    
+                    
+                    function Senses(){
+                        var text = "";
+                        
+                        function addText(str){
+                            if(creature[str] !== "0"){
+                                text+=" "+str+" "+ creature[str]+" ft.";
+                                if(str === "blindsight" && creature.blind){
+                                    text += " (blind beyond this radius),"
+                                }else{
+                                    text+=",";
+                                }
+                            }
+                        }
+                        addText("blindsight");
+                        addText("darkvision");
+                        addText("tremorsense");
+                        addText("truesight");
+                        text += " passive Perception ";
+                        if(!passivePerception){
+                            text += GetMod("wis")+10;
+                        }else{
+                            text+=(parseInt(passivePerception)+10);
+                        }
+
+                        propertiesList.appendChild(NewPropLine("Senses",text));
+
+                    }
+                    Senses();
+                    
+                    
+                    function Languages(){
+                        var speaks ="";
+                        var understands="";
+                        var i=0;
+                        var len = creature.languages.length;
+                        var uCount = 0;
+                        for(i=0;i<len;i++){
+                            if(creature.languages[i].speaks){
+                                speaks += " "+creature.languages[i].name +",";
+                            }else{
+                                understands += " "+creature.languages[i].name +",";
+                                uCount++;
+                            }
+                        }                                
+                        understands = understands.substring(0,understands.length-1);
+                        var text = "";
+                        if(speaks !== ""){
+                            text = speaks;
+                        }
+
+                        
+                        if(understands !== ""){
+                            if(uCount > 1){
+                                understands.replace(understands.lastIndexOf(","), " and");
+                                var str = 'a,b,c';
+                                understands = understands.replace(/,([^,]*)$/, " and" +'$1');
+                            }
+                            text += " understands " +understands;
+                            if(creature.understandsBut){
+                                text+=" but "+creature.understandsBut;
+                            }
+                        }else{
+                            text = text.substring(0,text.length-1);
+
+                        }
+                        if(creature.telepathy !== 0){
+                            text += ", telepathy "+creature.telepathy+" ft.";
+                        }
+                        
+                        propertiesList.appendChild(NewPropLine("Languages",text))
+                    }
+                    Languages();
+                    
+                    var crText = " "+creature.cr +" ("+crObj[creature.cr.toString()]+" XP)";
+                    propertiesList.appendChild(NewPropLine("Challenge",crText));
+                    return propertiesList;
+                }
+                function CreateAbilities(str, doTitle){
+                    
+                    var data = creature[str];
+                    var abilitiesBlock = NewClass("div", "property-block", "");
+                    if(doTitle){
+                        abilitiesBlock.appendChild(New("h3", Caps(str)));
+                    }
+                    function NewPropBlock(h4, p){
+                        var propBlock=NewClass("div", "property-block", "");
+                        var head =New("h4",h4);
+                        var body =New("p",p);
+                        propBlock.appendChild(head);
+                        propBlock.appendChild(body);
+                        return propBlock;
+                    }
+                    var i =0;
+                    var len = data.length;
+                    for(i=0;i<len;i++){
+                        var head = data[i].name;
+//                        console.log(head);
+                        var body = data[i].desc;
+//                        console.log(body);
+                        body = Format(body);
+                        
+                        abilitiesBlock.appendChild(NewPropBlock(head +".", " "+body));
+                    }
+                    
+                    return abilitiesBlock;
+                }
+                
+                cardContainer.appendChild(CreateHeading());
+                cardContainer.appendChild(AddLine());
+                cardContainer.appendChild(CreateTopStats());
+                cardContainer.appendChild(AddLine());
+                cardContainer.appendChild(CreateScores());
+                cardContainer.appendChild(AddLine());
+                cardContainer.appendChild(CreateProperties());
+                cardContainer.appendChild(AddLine());
+                cardContainer.appendChild(CreateAbilities("abilities", false));
+                cardContainer.appendChild(CreateAbilities("actions", true));
+                content.appendChild(cardContainer);
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            var getData = firebase.database().ref('/creature/').once('value').then(function(snapshot) {
+                creature = snapshotToArray(snapshot);
+                CreateStatblock(creature[3]);
+                //console.log(feats[0].name);
+            });
+
+            function writeUserData(userId, name, email, imageUrl) {
+                firebase.database().ref('users/' + userId).set({
+                    username: name,
+                    email: email,
+                    profile_picture : imageUrl
+                });
+            }
+            firebase.analytics();
+        </script>
+    </body>
+</html>

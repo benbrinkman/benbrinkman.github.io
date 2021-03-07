@@ -1,0 +1,118 @@
+
+{
+    "name":"Sand Elemental",
+    "size":"large",
+    "type":"elemental",
+    "tag":"",
+    "alignment":"neutral",
+    "hitDice":"12",
+    "armorName":"natural armor",
+    "shieldBonus":0,
+    "natArmorBonus":8,
+    "otherArmorDesc":"17 (natural armor)",
+    "speed":"40",
+    "burrowSpeed":"0",
+    "climbSpeed":"0",
+    "flySpeed":"0",
+    "hover":false,
+    "swimSpeed":"0",
+    "customHP":false,
+    "customSpeed":false,
+    "hpText":"126 (12d10 + 60)",
+    "speedDesc":"30 ft., burrow 30 ft.",
+    "strPoints":"20",
+    "dexPoints":"11",
+    "conPoints":"18",
+    "intPoints":"5",
+    "wisPoints":"10",
+    "chaPoints":"7",
+    "blindsight":"0",
+    "blind":false,
+    "darkvision":"60",
+    "tremorsense":"60",
+    "truesight":"0",
+    "telepathy":0,
+    "cr":"5",
+    "isLegendary":false,
+    "legendariesDescription":"The earth elemental can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time and only at the end of another creature's turn. The earth elemental regains spent legendary actions at the start of its turn.",
+    "properties":[],
+    "abilities":[
+        {
+            "name":"Sand Form",
+            "desc":"The [MON] can move through a space as narrow as 1 inch wide without squeezing."
+        }],
+    "actions":[
+        {
+            "name":"Multiattack",
+            "desc":"The elemental makes two slam attacks."
+        },
+        {
+            "name":"Slam",
+            "desc":"_Melee Weapon Attack:_ [STR ATK] to hit, reach 15 ft., one target. _Hit:_ [STR 2d8] bludgeoning damage."
+        },
+        {
+            "name":"Dune's Embrace",
+            "desc":"_Melee Weapon Attack:_ [STR ATK] to hit, reach 5 ft., one target. _Hit:_ [2d8] damage. If the target is a medium or smaller creature, they must succeed on a DC [STR SAVE] Strength saving throw or be grappled by the elemental. Until this grapple ends, the target is restrained. The [MON] can have up to 3 creatures grappled this way."
+        }],
+    "reactions":[],
+    "legendaries":[],
+    "sthrows":[],
+    "skills":[
+        {
+            "name":"athletics",
+            "stat":"str"
+        }
+    ],
+    "damagetypes":[
+        {
+            "name":"poison",
+            "note":" (Immune)",
+            "type":"i"
+        }
+    ],
+    "specialdamage":[
+        {
+            "name":"bludgeoning, piercing, and slashing from nonmagical weapons",
+            "note":" (Resistant)",
+            "type":"r"
+        }
+    ],
+    "conditions":[
+        {
+            "name":"exhaustion"
+        },
+        {
+            "name":"paralyzed"
+        },
+        {
+            "name":"petrified"
+        },
+        {
+            "name":"poisoned"
+        },
+        {
+            "name":"unconscious"
+        }
+    ],
+    "languages":[
+        {
+            "name":"Terran",
+            "speaks":true
+        }
+    ],
+    "doubleColumns":false,
+    "separationPoint":1,
+    "damage":[],
+    "lairs":[],
+    "regionals":[],
+    "customCr":"5 (1,800 XP)",
+    "customProf":3,
+    "understandsBut":"",
+    "isLair":false,
+    "lairDescription":"When fighting inside its lair, the earth elemental can invoke the ambient magic to take lair actions. On initiative count 20 (losing initiative ties), the earth elemental can take one lair action to cause one of the following effects:",
+    "lairDescriptionEnd":"The earth elemental can't repeat an effect until they have all been used, and it can't use the same effect two rounds in a row.",
+    "isRegional":false,
+    "regionalDescription":"The region containing the earth elemental's lair is warped by the creature's presence, which creates one or more of the following effects:",
+    "regionalDescriptionEnd":"If the earth elemental dies, the first two effects fade over the course of 3d10 days.",
+    "shortName":"elemental"
+}

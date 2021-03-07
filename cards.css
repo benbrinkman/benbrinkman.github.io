@@ -1,37 +1,3 @@
-html {
-    overflow-y: scroll;
-}
-
-body{
-    padding:0;
-    margin:0;
-    background-color:#a9a9a9;
-}
-
-#header{
-    /*    height:100px;*/
-    padding-top:5px;
-    padding-bottom:5px;
-    background-color:#393959;
-    width:100%;
-    color:white;
-    text-align:center;
-}
-
-#header h1{
-    margin:0;
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-}
-
-
-#header h2{
-    margin:0;
-    font-family: 'Fraunces', serif;
-    font-style:italic;
-    font-weight:100;
-    font-size:16px
-}
 
 .dragcard {
     position: absolute;
@@ -89,6 +55,19 @@ body{
     line-height: 1.2em;
 }
 
+#saveButton{
+    cursor:pointer;
+
+    position:fixed;
+    width:40px;
+    height:30px;
+    background-color:#343434;
+    color:white;
+    text-align:center;
+    line-height:30px;
+    margin-left:450px
+}
+
 .scores p{
     margin: 0 0 10px;
     /*    color: #922610;*/
@@ -143,6 +122,10 @@ body{
 .reverse-indent {
 /*    text-indent: -1em;*/
     padding-left: 1em;
+}
+
+.dragcard h1, h2, h3, h4, p, i{
+    cursor:text;
 }
 
 
