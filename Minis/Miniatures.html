@@ -127,14 +127,22 @@
                 
                 var pictureLink = document.createElement('a');
                 pictureLink.classList.add('picture-link');
-                
                 if(img_url != "-"){
-
-                    img = new Image();
+                    var img = new Image();
+                    img.onload = function() {
+                        if(this.height > this.width){
+                            this.classList.add("tallImg");
+//                            console.log("tall");
+                        }else{
+                            this.classList.add("wideImg");
+//                            console.log("wide");
+                        }
+                    }
                     img.src = img_url;
                     img.id = index + source + idNum;
                     pictureLink.appendChild(img);
                     pictureLink.setAttribute("href", img_url);
+                    
                 }
                 
                 pictureBoxInner.appendChild(pictureLink);
@@ -154,7 +162,6 @@
                 miniatures = snapshotToArray(snapshot);
                 var len = miniatures.length;
                 console.log(len);
-                console.log(miniatures[1].sourceLong);
                 function InitDatabase(){
                     for (var i = 0; i < len; i++){
                         if(miniatures[i].imgURL !== "-"){
@@ -162,18 +169,6 @@
                         }
                         
                     }
-                    for (var i = 0; i < len; i++){
-                        testWidth = document.getElementById(i+ miniatures[i].source+ miniatures[i].index);
-                        if(testWidth != null){
-                            if(testWidth.width < testWidth.height){
-                                testWidth.classList.add("tallImg");
-                            }
-                            else{
-                                testWidth.classList.add("wideImg");
-                            }
-                        }
-                    }
-                    
                 }
                 InitDatabase();
             
