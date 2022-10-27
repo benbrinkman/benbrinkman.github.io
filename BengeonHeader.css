@@ -1,33 +1,121 @@
+:root{
+    --bg:#393959;
+    --t:0.3s;
+    --w:50px;
+}
+
 html {
+    margin:0 0 0 0;
+    padding:0 0 0 0;
     overflow-y: scroll;
 }
 
 body{
-    padding:0;
-    margin:0;
+    margin:0 0 0 0;
+    padding:0 0 0 0;
     background-color:#a9a9a9;
 }
 
 #header{
-    /*    height:100px;*/
-    padding-top:5px;
-    padding-bottom:5px;
-    background-color:#393959;
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+    background-color:var(--bg);
     width:100%;
     color:white;
+    text-align:left;
+    position:fixed;
+    top:0;
+    transition-duration:var(--t);
+}
+
+
+#header:hover{
+/*    background-color:var(--bg);*/
+    
+}
+
+#header:hover .arrowSmall{
+    border-color: transparent transparent transparent var(--bg);
+}
+
+#header:hover .LinkBox{
+    background-color:var(--bg);
+    width:var(--w);
+}
+
+#header:hover #linkHolder{
+    width:100px;
+}
+
+
+#titleBar{
+    margin:0 0 0 0;
+    padding:0 0 0 0;
+    background-color:var(--bg);
+/*    overflow:hidden;*/
+}
+
+#textHolder{
+    margin: 0 0 0 0;
+    padding:0 10px 0 10px;
+    float:left;
+    transition-duration:var(--t);
+    background-color:var(--bg);
+}
+
+
+.LinkBox{
+    margin: 0 0 0 0;
+    padding:0 0 0 0;
+    float:left;
     text-align:center;
+    width:0px;
+    background-color:var(--bg);
+    overflow: hidden;
+    display:inline-block;
+    transition-duration:var(--t);
+    white-space: nowrap;
+
+}
+
+#arrowHolder{
+    margin: 0 0 0 0;
+    padding:0 0 0 0;
+    float:left;
+    position:relative;
+    background-color:var(--bg);
+    width:15px;
+}
+
+.arrow{
+    margin: 0 0 0 0;
+    padding:0 0 0 0;
+    border-style: solid;
+    border-width: 5px 0 5px 10px;
+    border-color: transparent transparent transparent white;
+    position:absolute;
+    left:0px;
+}
+
+#arrowTop{
+    border-color: transparent transparent transparent var(--bg);
+    left:-2px;
 }
 
 #header h1{
-    margin:0;
+    margin:0 0 0 5px;
+    padding:0 0 0 0;
     font-family: 'Fraunces', serif;
     font-weight: 500;
+    font-size:32px;
+
 }
 
 #header h2{
-    margin:0;
+    margin:0 0 0 5px;
+    padding:0 0 5px 0;
     font-family: 'Fraunces', serif;
     font-style:italic;
     font-weight:100;
-    font-size:16px
+    font-size:16px;
 }

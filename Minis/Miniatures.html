@@ -2,20 +2,23 @@
 <html>
     <head>
         <title>Ben's Miniatures</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="minis.css"> 
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
     </head>
     <body>
         <div id="top">
+<!--
             <input type="text" id="urlInput" name="urlInput">
             <input type="submit" id="inputSubmit" name="inputSubmit" onclick='InputNewMini()'>
+-->
         </div>
         <div id="content">
             
+<!--
             <div class="content-box">
                 <div class="content-box-inside">
-                    <div class="name-box"></div>
+                    <div class="name-box">test</div>
                     <div class="info-box-left"></div>
                     <div class="info-box-right"></div>
                     <div class="picture-box">
@@ -41,59 +44,56 @@
                 </div>
             </div>
             
-            <div class="content-box">
-                <div class="content-box-inside">
-                    <div class="name-box"></div>
-                    <div class="info-box-left"></div>
-                    <div class="info-box-right"></div>
-                    <div class="picture-box">
-                        <img src="">
-                    </div>
-                    <div class="bottom-box"></div>
-                </div>
-            </div>
-            
-            
-            <div class="content-box">
-                <div class="content-box-inside">
-                    <div class="name-box"></div>
-                    <div class="info-box-left"></div>
-                    <div class="info-box-right"></div>
-                    <div class="picture-box">
-                        <img src="">
-                    </div>
-                    <div class="bottom-box"></div>
-                </div>
-            </div>
-            
-            
-            <div class="content-box">
-                <div class="content-box-inside">
-                    <div class="name-box"></div>
-                    <div class="info-box-left"></div>
-                    <div class="info-box-right"></div>
-                    <div class="picture-box">
-                        <img src="">
-                    </div>
-                    <div class="bottom-box"></div>
-                </div>
-            </div>
+-->
             
         </div>
+         
+
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+
+
+        
         <script>
+           
+            const firebaseConfig = {
+                apiKey: "AIzaSyASmU4cMjsC5zGQzAXtUAxO0U-KSYG2EcE",
+                authDomain: "miniatures-8d2a2.firebaseapp.com",
+                databaseURL: "https://miniatures-8d2a2-default-rtdb.firebaseio.com",
+                projectId: "miniatures-8d2a2",
+                storageBucket: "miniatures-8d2a2.appspot.com",
+                messagingSenderId: "81733865892",
+                appId: "1:81733865892:web:bb89f8059f579523387131",
+                measurementId: "G-JN71DH32ZE"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+            var database = firebase.database();
+            
+            function snapshotToArray(snapshot) {
+                var returnArr = [];
+                snapshot.forEach(function(childSnapshot) {
+                    var item = childSnapshot.val();
+                    item.key = childSnapshot.key;
+                    returnArr.push(item);
+                });
+                return returnArr;
+            };
+            
             
             numDifMinis = 0;
             
-            function InputNewMini(){
-                console.log("this is working");
-                var url = document.getElementById("urlInput").value;
+            function InputNewMini(name, img_url, size, rarity, source, quantity, sourceLong, game, year){
                 
                 var contentMain = document.getElementById("content");
                 
                 var contentBox = document.createElement('div');
                 contentBox.classList.add('content-box');
-                numDifMinis+=1;
-                contentBox.setAttribute('id',"mini"+numDifMinis);
                 
                 var contentBoxInside= document.createElement('div');
                 contentBoxInside.classList.add('content-box-inside');
@@ -101,42 +101,65 @@
                 
                 var nameBox= document.createElement('div');
                 nameBox.classList.add('name-box');
+                nameBox.innerHTML=name;
                 contentBoxInside.appendChild(nameBox);
 
                 var infoBoxLeft= document.createElement('div');
                 infoBoxLeft.classList.add('info-box-left');
+                infoBoxLeft.innerHTML="<b>Size:</b> " +size+"<br><b>Quantity:</b> " +quantity;
+                infoBoxLeft.title=sourceLong
                 contentBoxInside.appendChild(infoBoxLeft);
                 
                 var infoBoxRight = document.createElement('div');
                 infoBoxRight.classList.add('info-box-right');
+                infoBoxRight.innerHTML="<b>Rarity:</b> "+rarity+"<br><p title='"+sourceLong+"'>"+"<b>Src: </b>"+source+"</p>";
                 contentBoxInside.appendChild(infoBoxRight);
+                
                 
                 var pictureBox = document.createElement('div');
                 pictureBox.classList.add('picture-box');
+                
+                var pictureBoxInner = document.createElement('div');
+                pictureBoxInner.classList.add('picture-box-inner');
+                
+                var pictureLink = document.createElement('a');
+                pictureLink.classList.add('picture-link');
+                
+                if(img_url != "-"){
+                    pictureLink.innerHTML="<img src ="+img_url+">"  
+                    pictureLink.setAttribute("href", img_url);
+                }
+                
+                pictureBoxInner.appendChild(pictureLink);
+                pictureBox.appendChild(pictureBoxInner);
+                
                 contentBoxInside.appendChild(pictureBox);
-                
-                var imageLink = document.createElement('a');
-                imageLink.setAttribute("href", url);
-                pictureBox.appendChild(imageLink);
-                
-                var img = document.createElement('img');
-                imageLink.appendChild(img);
-                
+                                
                 var bottomBox = document.createElement('div');
                 bottomBox.classList.add('bottom-box');
+                bottomBox.innerHTML= game + " " + year;
                 contentBoxInside.appendChild(bottomBox);              
-                
-                
-                var sourceImg = document.createElement('img');
-                
-                
                 
                 contentMain.appendChild(contentBox);
             }
             
-            function getSource(){
-                
-            }
+            var AccessDatabase = firebase.database().ref('/').once('value').then(function(snapshot) {
+                miniatures = snapshotToArray(snapshot);
+                var len = miniatures.length;
+                console.log(len);
+                console.log(miniatures[1].sourceLong);
+                function InitDatabase(){
+                    for (var i = 0; i < len; i++){
+                        if(miniatures[i].imgURL !== "-"){
+                            InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year)
+                        }
+                    }
+                }
+                InitDatabase();
+            
+            });
+            
+            
             
             
         </script>

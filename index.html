@@ -2,138 +2,117 @@
 <html>
     <head>
         <title>Dungeon Master Database</title>
-        <!--<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"> -->
-        <link rel="stylesheet" type="text/css" href="index.css"> 
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="index.css">
     </head>
-<body>
-    
-    <div id="topBar">
-        <div class = "title">Dungeons &amp; Dragons &amp; Databases</div>
-    </div>
-    <div id="center" onclick='AddBox()'>
-        <div class="tile">
-            <div class="tileImg">
-                <img src="img/pricesandobjects1.png" alt="Prices and Objects">
-            </div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Prices and Objects
+    <body>
+        <script src="BengeonHeader.js"></script>
+
+
+        <div id="content">
+            <div class="tile">
+                <div class="tileImg">
+                    <img src="img/pricesandobjects1.png" alt="Prices and Objects">
+                </div>
+                <div class="tileLabel">
+                    <div class = "tileLabelText">
+                        Prices and Objects
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Random Generator
+            <div class="tile">
+                <div class="tileImg">
+                    <img id="test" src="">
+                </div>
+                <div class="tileLabel">
+                    <div class = "tileLabelText">
+                        Random Generator
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Magic items
+            <div class="tile">
+                <div class="tileImg"></div>
+                <div class="tileLabel">
+                    <div class = "tileLabelText">
+                        Magic items
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Spells
+            <div class="tile">
+                <div class="tileImg"></div>
+                <div class="tileLabel">
+                    <div class = "tileLabelText">
+                        Spells
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Monsters
+            <div class="tile">
+                <div class="tileImg"></div>
+                <div class="tileLabel">
+                    <div class = "tileLabelText">
+                        Monsters
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tile">
-            <div class="tileImg"></div>
-            <div class="tileLabel">
-                <div class = "tileLabelText">
-                    Classes
+            <div class="tile">
+                <div class="tileImg"></div>
+                <div class="tileLabel">
+                    <div class = "tileLabelText">
+                        Classes
+                    </div>
                 </div>
             </div>
+
         </div>
-        
-    </div>
-
-    
-    
-    
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
 
 
-
-    <script>
-    // Your web app's Firebase configuration
-        var firebaseConfig = {
-        apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
-        authDomain: "benbrinkman-1d46e.firebaseapp.com",
-        databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
-        projectId: "benbrinkman-1d46e",
-        storageBucket: "benbrinkman-1d46e.appspot.com",
-        messagingSenderId: "221991902624",
-        appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
-        measurementId: "G-YF3NDT9KGK"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        var database = firebase.database();
-
-        Tiles(1, 3);
-        
-        function Tiles(margin, numTiles){
-            var tile = document.getElementsByClassName("tile");
-            var tileWidth = (100-((numTiles+1)*margin))/numTiles;
-            console.log(tileWidth);
-            for (var i = 0; i < tile.length; i++){
-                tile[i].style.marginTop=margin+"%";
-                tile[i].style.marginLeft=margin+"%";
-                tile[i].style.width=tileWidth+"%";
+        <script>
+            Tiles(1, 3);
+            function Tiles(margin, numTiles){
+                var tile = document.getElementsByClassName("tile");
+                var tileWidth = (100-((numTiles+1)*margin))/numTiles;
+                for (var i = 0; i < tile.length; i++){
+                    tile[i].style.marginTop=margin+"%";
+                    tile[i].style.marginLeft=margin+"%";
+                    tile[i].style.width=tileWidth+"%";
+                }
             }
             
-        }
-
-        function AddBox(){
+            var imgBase = "https://media.miniaturemarket.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/d/"
             
-        }
-        
-        
-        
+            var url = "https://www.miniaturemarket.com/ddvmf-040.html"
+//            console.log(url);
+//            console.log($x("//span[@class='price'])"));
+           
+            
+            function returnImg(_url){
+//                var result = /[^/]*$/.exec(_url)[0];
+                var lastIndexOfSlash = _url.lastIndexOf('/')+1;
+                var lastIndexOfDot = _url.lastIndexOf('.');
+                var imgName = _url.substring(lastIndexOfSlash, lastIndexOfDot);
+                var result = imgBase + imgName + ".jpg";
+                console.log(result);
+                return result;
+            }
+            
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://www.miniaturemarket.com/ddvmf-040.html", true);  // last parameter must be true
+            request.responseType = "document";
+            request.onload = function (e) {
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                        console.log("nice");
+                    } else {
+                        console.error(request.status, request.statusText);
+                    }
+                }
+            };
+            request.onerror = function (e) {
+                console.error(request.status, request.statusText);
+            };
+            request.send(null);  // not a POST request, so don't send extra data
+            
+        </script>
 
-        var testVar = firebase.database().ref('/users/' + 1).once('value').then(function(snapshot) {
-            var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-            console.log(username);
-        });
-
-
-
-        function writeUserData(userId, name, email, imageUrl) {
-            firebase.database().ref('users/' + userId).set({
-                username: name,
-                email: email,
-                profile_picture : imageUrl
-            });
-        }
-
-        firebase.analytics();
-
-    </script>
-</body>
+    </body>
 </html>

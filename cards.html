@@ -2,31 +2,25 @@
 <html>
     <head>
         <title>Bengeons &amp; Dragons</title>
-        <!--<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"> -->
-        <link rel="stylesheet" type="text/css" href="cards.css"> 
-        <link rel="stylesheet" type="text/css" href="BengeonHeader.css"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="cards.css">
         <script src=  "http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,100&display=swap" rel="stylesheet">
 
     </head>
     <body>
-        <div id="header">
-            <h1>Welcome to the Bengeon</h1>
-            <h2>Ben's Dungeons &amp; Dragons lists and things</h2>
-        </div>
+        <script src="BengeonHeader.js"></script>
+
         <div id='content'>
             <div id="previewImage">
             </div>
         </div>
-        
-        
+
+
         <!-- Draggable DIV -->
         <div class="dragcard">
             <div id="captureID">
                 <a id="saveButton">save</a>
-<!--                <div class="saveButton" onclick="SiteScreenshot()">save</div>-->
+                <!--                <div class="saveButton" onclick="SiteScreenshot()">save</div>-->
                 <div class="card-container">
                     <div class="creature-heading">
                         <h1 id="monster-name">Spawn of Ammit</h1>
@@ -133,33 +127,33 @@
                         <polyline points="0,0 500,2.5 0,5"></polyline>
                     </svg>
                     <div class="actions">
-                            <div class="property-block">
-                                <div>
-                                    <h4>Hold Breath.</h4>
-                                    <p> The Spawn of Ammit can hold its breath for 30 minutes.</p>
-                                </div>
-                            </div> 
-                            <!-- property block -->
-                            <div class="property-block">
-                                <div>
-                                    <h4>Insightful Gaze.</h4>
-                                    <p> The Spawn of Ammit knows the true alignment of every creature it sees.</p>
-                                </div>
-                            </div> 
-                            <!-- property block -->
-                            <div class="property-block">
-                                <div>
-                                    <h4>Innate Spellcasting.</h4>
-                                    <p> The Spawn of Ammit's innate spellcasting ability is Wisdom (spell save DC 15, +7 to hit with spell attacks). It can innately cast the following spells, requiring no material components:</p>
-                                </div>
-                                <div class="reverse-indent"> <p>At will: <i>spare the dying</i></p>
-                                </div>
-                                <div class="reverse-indent"> <p>3/day each: <i>bane, false life (3rd level)</i></p>
-                                </div>
+                        <div class="property-block">
+                            <div>
+                                <h4>Hold Breath.</h4>
+                                <p> The Spawn of Ammit can hold its breath for 30 minutes.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                        <div class="property-block">
+                            <div>
+                                <h4>Insightful Gaze.</h4>
+                                <p> The Spawn of Ammit knows the true alignment of every creature it sees.</p>
+                            </div>
+                        </div> 
+                        <!-- property block -->
+                        <div class="property-block">
+                            <div>
+                                <h4>Innate Spellcasting.</h4>
+                                <p> The Spawn of Ammit's innate spellcasting ability is Wisdom (spell save DC 15, +7 to hit with spell attacks). It can innately cast the following spells, requiring no material components:</p>
+                            </div>
+                            <div class="reverse-indent"> <p>At will: <i>spare the dying</i></p>
+                            </div>
+                            <div class="reverse-indent"> <p>3/day each: <i>bane, false life (3rd level)</i></p>
+                            </div>
                             <div class="reverse-indent"> <p>1/day: <i>revivify</i></p>
-                                </div>
-                            </div> 
-                            <!-- property block -->
+                            </div>
+                        </div> 
+                        <!-- property block -->
                     </div> 
                     <!-- actions -->
                     <div class="actions">
@@ -199,154 +193,154 @@
                 </div>
             </div>
         </div>
-    
-    
-    
-    
-    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
 
 
 
-    <script>
-    // Your web app's Firebase configuration
-        var firebaseConfig = {
-        apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
-        authDomain: "benbrinkman-1d46e.firebaseapp.com",
-        databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
-        projectId: "benbrinkman-1d46e",
-        storageBucket: "benbrinkman-1d46e.appspot.com",
-        messagingSenderId: "221991902624",
-        appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
-        measurementId: "G-YF3NDT9KGK"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
 
-        var database = firebase.database();
-        var getCanvas;
+        <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
-        Tiles(1, 3);
-        
-        function Tiles(margin, numTiles){
-            var tile = document.getElementsByClassName("tile");
-            var tileWidth = (100-((numTiles+1)*margin))/numTiles;
-            for (var i = 0; i < tile.length; i++){
-                tile[i].style.marginTop=margin+"%";
-                tile[i].style.marginLeft=margin+"%";
-                tile[i].style.width=tileWidth+"%";
-            }
-            
-        }
-        
-        
-        dragElement(document.getElementsByClassName("dragcard")[0]);
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
 
-        function dragElement(elmnt) {
-            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            
-            elmnt.onmousedown = dragMouseDown;
-            
-            function dragMouseDown(e) {
-                e = e || window.event;
-                e.preventDefault();
-                // get the mouse cursor position at startup:
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                // call a function whenever the cursor moves:
-                document.onmousemove = elementDrag;
+
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBU42Ht6VsiJ6rSZ5VfJJno_SV8jyG4qvU",
+                authDomain: "benbrinkman-1d46e.firebaseapp.com",
+                databaseURL: "https://benbrinkman-1d46e.firebaseio.com",
+                projectId: "benbrinkman-1d46e",
+                storageBucket: "benbrinkman-1d46e.appspot.com",
+                messagingSenderId: "221991902624",
+                appId: "1:221991902624:web:92ebe45daf3ece64ac58c5",
+                measurementId: "G-YF3NDT9KGK"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            var database = firebase.database();
+            var getCanvas;
+
+            Tiles(1, 3);
+
+            function Tiles(margin, numTiles){
+                var tile = document.getElementsByClassName("tile");
+                var tileWidth = (100-((numTiles+1)*margin))/numTiles;
+                for (var i = 0; i < tile.length; i++){
+                    tile[i].style.marginTop=margin+"%";
+                    tile[i].style.marginLeft=margin+"%";
+                    tile[i].style.width=tileWidth+"%";
+                }
+
             }
 
-            function elementDrag(e) {
-                e = e || window.event;
-                e.preventDefault();
-                // calculate the new cursor position:
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                // set the element's new position:
-                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+            dragElement(document.getElementsByClassName("dragcard")[0]);
+
+            function dragElement(elmnt) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+                elmnt.onmousedown = dragMouseDown;
+
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // get the mouse cursor position at startup:
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // call a function whenever the cursor moves:
+                    document.onmousemove = elementDrag;
+                }
+
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // calculate the new cursor position:
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // set the element's new position:
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                }
+
+                function closeDragElement() {
+                    // stop moving when mouse button is released:
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
             }
 
-            function closeDragElement() {
-                // stop moving when mouse button is released:
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
-        }
 
-        
-//        const numberOfUsers = 116;
-//        const randomIndex = Math.floor(Math.random() * numberOfUsers);
-//
-        function snapshotToArray(snapshot) {
-            var returnArr = [];
+            //        const numberOfUsers = 116;
+            //        const randomIndex = Math.floor(Math.random() * numberOfUsers);
+            //
+            function snapshotToArray(snapshot) {
+                var returnArr = [];
 
-            snapshot.forEach(function(childSnapshot) {
-                var item = childSnapshot.val();
-                item.key = childSnapshot.key;
+                snapshot.forEach(function(childSnapshot) {
+                    var item = childSnapshot.val();
+                    item.key = childSnapshot.key;
 
-                returnArr.push(item);
+                    returnArr.push(item);
+                });
+                return returnArr;
+            };
+
+
+            // Global variable 
+            var element = document.getElementsByClassName("dragcard")[0];
+
+            // Global variable 
+            var getCanvas;  
+
+
+            $("#saveButton").on('click', function() { 
+                console.log(getCanvas);
+                html2canvas(element).then(canvas => {
+                    var imgageData = canvas.toDataURL("image/png"); 
+                    // Now browser starts downloading  
+                    // it instead of just showing it 
+                    var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream"); 
+
+                    //create a link with the download file, then click it
+                    var link = document.createElement('a');
+                    link.setAttribute("download", "imageDownload.png");
+                    link.setAttribute("href", newData);
+                    link.click();
+                });
+            }); 
+
+
+            var testVar = firebase.database().ref('/feat/').once('value').then(function(snapshot) {
+                feats = snapshotToArray(snapshot);
+                var len = feats.length;
+                var i;
+                for(i=0; i<len;i++){
+
+                }
+
             });
-            return returnArr;
-        };
-        
-        
-        // Global variable 
-        var element = document.getElementsByClassName("dragcard")[0];
-
-        // Global variable 
-        var getCanvas;  
 
 
-        $("#saveButton").on('click', function() { 
-            console.log(getCanvas);
-            html2canvas(element).then(canvas => {
-                var imgageData = canvas.toDataURL("image/png"); 
-                // Now browser starts downloading  
-                // it instead of just showing it 
-                var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream"); 
-
-                //create a link with the download file, then click it
-                var link = document.createElement('a');
-                link.setAttribute("download", "imageDownload.png");
-                link.setAttribute("href", newData);
-                link.click();
-            });
-        }); 
-        
-        
-        var testVar = firebase.database().ref('/feat/').once('value').then(function(snapshot) {
-            feats = snapshotToArray(snapshot);
-            var len = feats.length;
-            var i;
-            for(i=0; i<len;i++){
-                
+            function writeUserData(userId, name, email, imageUrl) {
+                firebase.database().ref('users/' + userId).set({
+                    username: name,
+                    email: email,
+                    profile_picture : imageUrl
+                });
             }
-            
-        });
-        
-        
-        function writeUserData(userId, name, email, imageUrl) {
-            firebase.database().ref('users/' + userId).set({
-                username: name,
-                email: email,
-                profile_picture : imageUrl
-            });
-        }
 
-        firebase.analytics();
+            firebase.analytics();
 
-    </script>
-        
+        </script>
+
     </body>
 
 </html>

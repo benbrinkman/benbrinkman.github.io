@@ -1,46 +1,14 @@
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-
-body{
-    padding:0;
-    margin:0;
-    background-color:#404040;
-}
-
-#topBar{
-    position:relative;
-    width:100%;
-    //height:70px;
-    background-color:white;
-    box-shadow:0px 0px 10px 0px black;
-}
-
-.title{
-    margin:0;
-    padding:0;
-    font-size:3vw;
-    text-align:center;
-    font-family: 'Roboto Mono', monospace;
-    padding:5px;
-}
-
-#center{
+#content{
     padding:0%;
     width:80%;
     margin-left:10%;
     text-align:center;
-    //background-color:rgba(1,1,1,0.5);
-    height:100vh;
 }
 
 .tile{
     position:relative;
     width:32%;
-    height:15vw;
+    height:150px;
     border-width:0px;
     float:left;
     background-color:white;
@@ -58,11 +26,8 @@ body{
 }
 
 .tileImg{
-    //background-color:aqua;
     width:100%;
-    //height:10vw;
     overflow: hidden;
-    
 }
 
 .tileImg img{
@@ -90,83 +55,3 @@ body{
     font-family: 'Noto Sans JP', sans-serif;
     line-height: 5vw;
 }
-
-
-/*///////////////////////////////////////////////////////////
-//////////////////////////CLASSES////////////////////////////
-///////////////////////////////////////////////////////////*/
-
-#mainContent{
-    margin-top:2%;
-    position:absolute;
-    padding:2%;
-    width:46%;
-    text-align:left;
-    background-color:white;
-/*    height:100vh;*/
-    margin-left:25%;
-}
-
-
-#mainContent td, th{
-/*    border:1px solid #ddd;*/
-    border:0px solid #ddd;
-
-    padding:1px;
-    margin:0px;
-    
-}
-
-#mainContent tr:nth-child(even){background-color: #f2f2f2;}
-
-#mainContent p{
-    padding:0px;
-    margin:0px;
-    font-family: 'Noto Sans JP', sans-serif;
-}
-
-#mainContent li{
-    padding:0px;
-    margin:0px;
-    font-family: 'Noto Sans JP', sans-serif;
-}
-
-#mainContent h1{
-    padding:0px;
-    margin:0px;
-    margin-bottom:15px;
-    margin-top:15px;
-    font-family: 'Roboto Mono', monospace;
-
-}
-
-#mainContent h2{
-    padding:0px;
-    margin:0px;
-    margin-bottom:15px;
-    margin-top:15px;
-    font-family: 'Roboto Mono', monospace;
-
-}
-
-#mainContent h3{
-    padding:0px;
-    margin:0px;
-    margin-bottom:10px;
-    margin-top:10px;
-    font-family: 'Roboto Mono', monospace;
-
-}
-
-#mainContent h2:after
-{
-    content:' ';
-    display:block;
-    border-top:1px solid black;
-}
-
-#mainContent table{
-    width:100%;
-/*    text-align:center;*/
-}
-
