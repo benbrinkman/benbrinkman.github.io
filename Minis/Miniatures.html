@@ -88,34 +88,37 @@
             
             numDifMinis = 0;
             
-            function InputNewMini(name, img_url, size, rarity, source, quantity, sourceLong, game, year){
+            function InputNewMini(name, img_url, size, rarity, source, quantity, sourceLong, game, year, idNum, index){
                 
                 var contentMain = document.getElementById("content");
-                
                 var contentBox = document.createElement('div');
                 contentBox.classList.add('content-box');
                 
+                //Create inner box for tile
                 var contentBoxInside= document.createElement('div');
                 contentBoxInside.classList.add('content-box-inside');
                 contentBox.appendChild(contentBoxInside);
                 
+                //Create the top element in the box
                 var nameBox= document.createElement('div');
                 nameBox.classList.add('name-box');
                 nameBox.innerHTML=name;
                 contentBoxInside.appendChild(nameBox);
 
+                //Create box for SIZE and QUANTITY
                 var infoBoxLeft= document.createElement('div');
                 infoBoxLeft.classList.add('info-box-left');
                 infoBoxLeft.innerHTML="<b>Size:</b> " +size+"<br><b>Quantity:</b> " +quantity;
                 infoBoxLeft.title=sourceLong
                 contentBoxInside.appendChild(infoBoxLeft);
                 
+                //Create box for RARITY and SOURCE
                 var infoBoxRight = document.createElement('div');
                 infoBoxRight.classList.add('info-box-right');
                 infoBoxRight.innerHTML="<b>Rarity:</b> "+rarity+"<br><p title='"+sourceLong+"'>"+"<b>Src: </b>"+source+"</p>";
                 contentBoxInside.appendChild(infoBoxRight);
                 
-                
+                //Create the picture holder elements
                 var pictureBox = document.createElement('div');
                 pictureBox.classList.add('picture-box');
                 
@@ -126,7 +129,11 @@
                 pictureLink.classList.add('picture-link');
                 
                 if(img_url != "-"){
-                    pictureLink.innerHTML="<img src ="+img_url+">"  
+
+                    img = new Image();
+                    img.src = img_url;
+                    img.id = index + source + idNum;
+                    pictureLink.appendChild(img);
                     pictureLink.setAttribute("href", img_url);
                 }
                 
@@ -151,7 +158,16 @@
                 function InitDatabase(){
                     for (var i = 0; i < len; i++){
                         if(miniatures[i].imgURL !== "-"){
-                            InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year)
+                            InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year, miniatures[i].index, i)
+                        }
+                        testWidth = document.getElementById(i+ miniatures[i].source+ miniatures[i].index);
+                        if(testWidth != null){
+                            if(testWidth.width < testWidth.height){
+                                testWidth.classList.add("tallImg");
+                            }
+                            else{
+                                testWidth.classList.add("wideImg");
+                            }
                         }
                     }
                 }
