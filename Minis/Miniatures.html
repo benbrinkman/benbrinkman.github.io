@@ -87,6 +87,7 @@
             
             
             numDifMinis = 0;
+            var Sources = [];
             
             function InputNewMini(name, img_url, size, rarity, source, quantity, sourceLong, game, year, idNum, index){
                 
@@ -130,18 +131,19 @@
                 if(img_url != "-"){
                     var img = new Image();
                     img.onload = function() {
-                        if(this.height > this.width){
-                            this.classList.add("tallImg");
-//                            console.log("tall");
-                        }else{
+                        if(this.height/this.width < 350/296){
                             this.classList.add("wideImg");
-//                            console.log("wide");
+                            console.log(name +": "+this.height/this.width+": ratio");
+                        }else{
+                            this.classList.add("tallImg");
+                            console.log(name +": "+this.height/this.width+": ratio");
                         }
+
+                        img.id = index;
+                        pictureLink.appendChild(img);
+                        pictureLink.setAttribute("href", img_url);
                     }
                     img.src = img_url;
-                    img.id = index + source + idNum;
-                    pictureLink.appendChild(img);
-                    pictureLink.setAttribute("href", img_url);
                     
                 }
                 
@@ -158,6 +160,31 @@
                 contentMain.appendChild(contentBox);
             }
             
+            
+            function Filter(){
+                var len = miniatures.length;
+                for (var i = 0; i < len; i++){
+                    
+                }
+            }
+            
+            function CreateSourceList(minis){
+                var len = minis.length;
+                for (var i = 0; i < len; i++){
+                    var foundMatch = false;
+                    for(var j = 0; j < Sources.length; j++){
+                        if(minis[i].source === Sources[j]){
+                            foundMatch = true;
+                        }
+                    }
+                    if(!foundMatch){
+                        Sources.push(minis[i].source);
+                    }
+                }
+                Sources.sort();
+                console.log(Sources);
+            }
+            
             var AccessDatabase = firebase.database().ref('/').once('value').then(function(snapshot) {
                 miniatures = snapshotToArray(snapshot);
                 var len = miniatures.length;
@@ -167,10 +194,10 @@
                         if(miniatures[i].imgURL !== "-"){
                             InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year, miniatures[i].index, i)
                         }
-                        
                     }
                 }
                 InitDatabase();
+//                CreateSourceList(miniatures);
             
             });
             
