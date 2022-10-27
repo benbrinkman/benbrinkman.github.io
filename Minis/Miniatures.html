@@ -160,6 +160,9 @@
                         if(miniatures[i].imgURL !== "-"){
                             InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year, miniatures[i].index, i)
                         }
+                        
+                    }
+                    for (var i = 0; i < len; i++){
                         testWidth = document.getElementById(i+ miniatures[i].source+ miniatures[i].index);
                         if(testWidth != null){
                             if(testWidth.width < testWidth.height){
@@ -170,6 +173,7 @@
                             }
                         }
                     }
+                    
                 }
                 InitDatabase();
             
