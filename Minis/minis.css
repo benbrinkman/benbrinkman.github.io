@@ -3,16 +3,106 @@ body{
     background-color:cornsilk
 }
 
+p{
+    margin:0;
+    padding:0;
+}
 #top{
     height:50px;
+    width:100%;
     background-color:black;
     margin-bottom:10px;
+    top:0;
+    position: fixed;
+}
+
+#menu{
+    display:none;
+    background-color: white;
+    width:300px;
+    height:450px;
+    position:fixed;
+    top:0;
+    
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 2px solid black;
+}
+
+#menuButtonStyle{
+    height:42px;
+    width:42px;
+    background-color: gray;
+    position:fixed;
+    top:4px;
+    left:4px;
+    border-radius:2px;
+
+}
+
+.menuSandwitchBars{
+    margin-left:4px;
+    margin-top:7px;
+    background-color:white;
+    height:5px;
+    width:34px;
+    border-radius:2px;
+}
+
+#clickOff{
+    display:none;
+    height:100%;
+    width:100%;
+    position:fixed;
+/*    background-color:orange;*/
+    top:0;
+}
+
+
+#SortMenu label{
+    width:30%;
+    font-size:20px;
+
+}
+#SortMenu select{
+    width:70%;
+    font-size:15px;
+
+}
+
+.optionHolder{
+    width:100%;
+    height:24px;
+/*    background-color: orange;*/
+    
+}
+
+.optionHolder p{
+    float:left;
+    margin-left:25px;
+    font-size:20px;
+    line-height: 24px;
+}
+
+.testCheck{
+    position:absolute;
+    height:20px;
+    width:20px;
+    margin:2px;
+    padding:0;
+/*    background-color:blue;*/
+    float:left;
 }
 
 #content{
+    
     width:1320px;
 /*    background-color:green;*/
     margin:auto;
+    margin-top:100px;
+    display:flex;
+    flex-flow:row wrap;
 }
 
 .content-box{
@@ -21,7 +111,7 @@ body{
     background-color:none;
     float:left;
     padding:15px;
-    display:flex;
+    
 }
 
 @media only screen and (max-width: 1320px) {

@@ -8,43 +8,47 @@
     </head>
     <body>
         <div id="top">
-<!--
-            <input type="text" id="urlInput" name="urlInput">
-            <input type="submit" id="inputSubmit" name="inputSubmit" onclick='InputNewMini()'>
--->
+            <div id="menuButton">
+                <div id="menuButtonStyle" onclick='OpenMenu()'>
+                    <div class="menuSandwitchBars"></div>
+                    <div class="menuSandwitchBars"></div>
+                    <div class="menuSandwitchBars"></div>
+                </div>
+            </div>
+            <div id="clickOff" onmouseover='OpenMenu()'></div>
+            <div id="menu">
+                <div class="optionHolder">
+                    <input type='checkbox' id="dndToggle" class='testCheck' checked='checked' onclick='FilterToggle()'>
+                    <p>D&amp;D</p>
+                </div>
+                <div class="optionHolder">
+                    <input type="checkbox" id="pathToggle" class="testCheck" checked='checked' onclick='FilterToggle()'>
+                    <p>Pathfinder</p>
+                </div>
+                <div class="optionHolder">
+                    <input type="checkbox" id="otherToggle" class="testCheck" checked='checked' onclick='FilterToggle()'>
+                    <p>Other</p>
+                </div>
+                <br>
+                <div id="SortMenu">
+                    <label for="sortOptions">Sort:</label>
+                    <select name ="sortOptions" id="sortOptions" onchange='RunSort()'>
+                        <option value = 'name'>Name</option>
+                        <option value = 'rarity'>Rarity</option>
+                        <option value = 'year'>Year</option>
+                        <option value = 'sourceLong'>Source</option>
+                        <option value = 'size'>Size</option>
+                    </select>
+                </div>
+                <div class="optionHolder">
+                    <input type="checkbox" id="testToggle" class="testCheck" checked='checked' onclick="RunSort()">
+                    <p>Ascending</p>
+                </div>
+            </div>
         </div>
         <div id="content">
             
-<!--
-            <div class="content-box">
-                <div class="content-box-inside">
-                    <div class="name-box">test</div>
-                    <div class="info-box-left"></div>
-                    <div class="info-box-right"></div>
-                    <div class="picture-box">
-                        <img src="https://media.miniaturemarket.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/d/dderlw-025a.jpg">
-                    </div>
-                    <div class="bottom-box">
-                        <img src = "img/dd.png">
-                        <div>text</div>
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="content-box">
-                <div class="content-box-inside">
-                    <div class="name-box"></div>
-                    <div class="info-box-left"></div>
-                    <div class="info-box-right"></div>
-                    <div class="picture-box">
-                        <img src="">
-                    </div>
-                    <div class="bottom-box"></div>
-                </div>
-            </div>
-            
--->
+
             
         </div>
          
@@ -88,11 +92,14 @@
             
             numDifMinis = 0;
             var Sources = [];
+            var miniatures =[];
             
             function InputNewMini(name, img_url, size, rarity, source, quantity, sourceLong, game, year, idNum, index){
                 
                 var contentMain = document.getElementById("content");
                 var contentBox = document.createElement('div');
+                contentBox.id = index;
+                contentBox.style.order = index;
                 contentBox.classList.add('content-box');
                 
                 //Create inner box for tile
@@ -133,10 +140,10 @@
                     img.onload = function() {
                         if(this.height/this.width < 350/296){
                             this.classList.add("wideImg");
-                            console.log(name +": "+this.height/this.width+": ratio");
+//                            console.log(name +": "+this.height/this.width+": ratio");
                         }else{
                             this.classList.add("tallImg");
-                            console.log(name +": "+this.height/this.width+": ratio");
+//                            console.log(name +": "+this.height/this.width+": ratio");
                         }
 
                         img.id = index;
@@ -160,12 +167,113 @@
                 contentMain.appendChild(contentBox);
             }
             
-            
-            function Filter(){
-                var len = miniatures.length;
-                for (var i = 0; i < len; i++){
-                    
+            function OpenMenu(){
+//                console.log("button press");
+                
+                if(document.getElementById("menu").style.display == "block"){
+                    document.getElementById("menu").style.display = "none";
+                    document.getElementById("clickOff").style.display = "none";
+                }else{
+                    document.getElementById("menu").style.display = "block";
+                    document.getElementById("clickOff").style.display = "block";
                 }
+            }
+            
+            function FilterToggle(){
+                
+                var len = miniatures.length;
+                var dnd = document.getElementById("dndToggle").checked;
+                var path = document.getElementById("pathToggle").checked;
+                var other = document.getElementById("otherToggle").checked;
+                console.log(dnd +"-"+path+"-"+other);
+                document.getElementById("5").display = "none";
+                for (var i = 0; i < miniatures.length; i++){
+                    if(miniatures[i].game == "D&D"){
+                        if(dnd){
+                            document.getElementById(i).style.display = 'block';
+                        }else{
+                            console.log("dnd else");
+                            document.getElementById(i).style.display = 'none';
+                        }
+                    }else if(miniatures[i].game == "Pathfinder"){
+                        if(path){
+                            document.getElementById(i).style.display = 'block';
+                        }else{
+                            document.getElementById(i).style.display = 'none';
+                        }
+                    }else{
+                        if(other){
+                            document.getElementById(i).style.display = 'block';
+                        }else{
+                            document.getElementById(i).style.display = 'none';
+                        }
+//                            console.log(miniatures[i].game);
+                    }
+                }
+            }
+
+            function RunSort(){
+                var property = document.getElementById("sortOptions").value;
+                console.log(property);
+                if(document.getElementById("testToggle").checked){
+                    Sort(true, property);
+                }else{
+                    Sort(false, property);
+                }
+            }
+            
+            function Sort(ascending, property){
+                
+                
+                let sortable = [];
+                for (var i = 0; i < miniatures.length;i++){
+                    sortable.push([i, miniatures[i][property]])
+                }
+                
+                
+//                console.log(sortable[10]);
+                if(isNaN(sortable[0][1])){
+                    sortable.sort((a, b) => a[1].localeCompare(b[1]));
+                }
+                else{
+                    sortable.sort((a, b) => a[1] - b[1]);
+                }
+//                console.log(sortable[10]);
+                for (var i = 0; i < sortable.length; i++){
+                    sortable[i][0] = i;
+//                    console.log(sortable[i]);
+                }
+                let sortableIndex = [];
+                for(var i = 0; i < sortable.length; i++){
+                    sortableIndex.push(miniatures[i][property]);
+                }
+                for(var i = 0; i < sortable.length; i++){
+                    var prop = sortable[i][1];
+//                    console.log(prop);
+                    var index = sortableIndex.indexOf(prop);
+//                    console.log(index);
+                    
+                    var value = i;
+                    if(!ascending){
+                        value = sortable.length - i;
+                    }
+                    document.getElementById(sortableIndex.indexOf(sortable[i][1])).style.order = value;
+                    sortableIndex[index] = sortableIndex[index]+i;
+                }
+                
+                
+//                miniatures.sort((a, b) => a.name.localeCompare(b.name));
+//                for(var i = 0; i < miniatures.length; i++){
+//                    console.log(document.getElementById(i).style.order);
+//                    document.getElementById(i).classList.add(miniatures.length-miniatures[i].image);
+//                    console.log(document.getElementById(i).style.order);
+//                }
+//                for(var i = 0; i < miniatures.length; i++){
+//                    console.log(document.getElementById(i).classList[1]);
+//                    document.getElementById(i).style.order = document.getElementById(i).classList[1];
+//                    document.getElementById(i).classList.remove(i);
+                    //TODO: pass order without creating a class
+//                }
             }
             
             function CreateSourceList(minis){
@@ -182,21 +290,54 @@
                     }
                 }
                 Sources.sort();
-                console.log(Sources);
+                
+                var menuHolder = document.getElementById("menu");
+                for (var i = 0; i < Sources.length; i++){
+                    var menuOption = document.createElement('div');
+                    menuOption.classList.add("optionHolder");
+                    var check = document.createElement("input");
+                    check.type = "checkbox";
+                    check.checked="checked";
+                    check.classList.add("testCheck");
+                    var text = document.createElement('p');
+                    text.innerHTML=Sources[i];
+                    menuOption.appendChild(check);
+                    menuOption.appendChild(text);
+                    menuHolder.appendChild(menuOption);
+                    
+                }
+//                console.log(Sources);
             }
             
             var AccessDatabase = firebase.database().ref('/').once('value').then(function(snapshot) {
                 miniatures = snapshotToArray(snapshot);
+                for (var i = 0; i < miniatures.length; i++){
+                    if(miniatures[i].imgURL == "-"){
+                        miniatures.splice(i, 1);
+                        i -=1;
+                    }
+                }
+                
+                //DELETE LINE AFTER TESTING
+//                miniatures.splice(30, miniatures.length);
+                
+                
                 var len = miniatures.length;
+
                 console.log(len);
                 function InitDatabase(){
                     for (var i = 0; i < len; i++){
-                        if(miniatures[i].imgURL !== "-"){
-                            InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year, miniatures[i].index, i)
+                        if(typeof miniatures[i].year == 'undefined'){
+                            miniatures[i].year = "0";
                         }
+                        miniatures[i].image = i;
+                        InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year, miniatures[i].index, i);
+                        console.log(miniatures[i].year);
                     }
                 }
                 InitDatabase();
+                Sort(true, 'name');
+//                Sort(true, 'rarity');
 //                CreateSourceList(miniatures);
             
             });
@@ -205,5 +346,22 @@
             
             
         </script>
+        <!--
+<div class="content-box">
+<div class="content-box-inside">
+<div class="name-box">test</div>
+<div class="info-box-left"></div>
+<div class="info-box-right"></div>
+<div class="picture-box">
+<img src="https://media.miniaturemarket.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/d/dderlw-025a.jpg">
+</div>
+<div class="bottom-box">
+<img src = "img/dd.png">
+<div>text</div>
+</div>
+
+</div>
+</div>
+-->
     </body>
 </html>
