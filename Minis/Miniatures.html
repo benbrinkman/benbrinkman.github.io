@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="minis.css"> 
 
     </head>
-    <body>
+    <body onscroll="LoadImagesOnScreen()">
         <div id="top">
             <div id="menuButton">
                 <div id="menuButtonStyle" onclick='OpenMenu()'>
@@ -21,6 +21,7 @@
                     <input type='checkbox' id="dndToggle" class='testCheck' checked='checked' onclick='FilterToggle()'>
                     <p>D&amp;D</p>
                 </div>
+                
                 <div class="optionHolder">
                     <input type="checkbox" id="pathToggle" class="testCheck" checked='checked' onclick='FilterToggle()'>
                     <p>Pathfinder</p>
@@ -29,7 +30,12 @@
                     <input type="checkbox" id="otherToggle" class="testCheck" checked='checked' onclick='FilterToggle()'>
                     <p>Other</p>
                 </div>
-                <br>
+                <div class = "horizontalLine"></div>
+                <div class="optionHolder">
+                    <input type="checkbox" id="pcToggle" class="testCheck" onclick='FilterToggle()'>
+                    <p>is PC Option</p>
+                </div>
+                <div class = "horizontalLine"></div>
                 <div id="SortMenu">
                     <label for="sortOptions">Sort:</label>
                     <select name ="sortOptions" id="sortOptions" onchange='RunSort()'>
@@ -46,24 +52,15 @@
                 </div>
             </div>
         </div>
-        <div id="content">
-            
-
-            
-        </div>
-         
+        <div id="content"></div>
 
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-
-
-
         
-        <script>
-           
+        <script>           
             const firebaseConfig = {
                 apiKey: "AIzaSyASmU4cMjsC5zGQzAXtUAxO0U-KSYG2EcE",
                 authDomain: "miniatures-8d2a2.firebaseapp.com",
@@ -137,20 +134,28 @@
                 pictureLink.classList.add('picture-link');
                 if(img_url != "-"){
                     var img = new Image();
-                    img.onload = function() {
-                        if(this.height/this.width < 350/296){
-                            this.classList.add("wideImg");
-//                            console.log(name +": "+this.height/this.width+": ratio");
-                        }else{
-                            this.classList.add("tallImg");
-//                            console.log(name +": "+this.height/this.width+": ratio");
-                        }
-
-                        img.id = index;
-                        pictureLink.appendChild(img);
-                        pictureLink.setAttribute("href", img_url);
-                    }
+                    img.loading = 'lazy';
                     img.src = img_url;
+                    
+//                    console.log(img.naturalHeight + " " + img.naturalWidth);
+                    
+                    if(img.naturalHeight == img.naturalWidth){
+                        img.classList.add("wideImg");
+                        
+                    }
+                    else if(img.naturalHeight/img.naturalWidth < 350/296){
+                        img.classList.add("wideImg");
+//                            console.log(name +": "+this.height/this.width+": ratio");
+                    }else{
+                        img.classList.add("tallImg");
+//                            console.log(name +": "+this.height/this.width+": ratio");
+                    }
+                    img.id = index;
+                    pictureLink.appendChild(img);
+                    pictureLink.setAttribute("href", img_url);
+                    img.onload = function() {
+//                        console.log(img.id + " done!");
+                    }
                     
                 }
                 
@@ -179,35 +184,71 @@
                 }
             }
             
+            function LoadImagesOnScreen(){
+                var screenHeight = screen.height;
+//                console.log("screen height: " + screenHeight);
+                
+                for (var i = 0; i < miniatures.length;i++){
+                    var element = document.getElementById(i);
+                    var disToTop = element.getBoundingClientRect().top;
+                    if(disToTop < screenHeight+500){
+//                        console.log(miniatures[i].name + " " +disToTop);
+                        
+                    }
+                }
+            }
+            
             function FilterToggle(){
                 
                 var len = miniatures.length;
-                var dnd = document.getElementById("dndToggle").checked;
-                var path = document.getElementById("pathToggle").checked;
-                var other = document.getElementById("otherToggle").checked;
-                console.log(dnd +"-"+path+"-"+other);
-                document.getElementById("5").display = "none";
+                
+                //set all sources other than D&D and Pathfinder to other in a new array, and check that one
+                var games = [];
+                var isPC = [];
                 for (var i = 0; i < miniatures.length; i++){
                     if(miniatures[i].game == "D&D"){
-                        if(dnd){
-                            document.getElementById(i).style.display = 'block';
-                        }else{
-                            console.log("dnd else");
-                            document.getElementById(i).style.display = 'none';
-                        }
+                        games[i] = miniatures[i].game;
                     }else if(miniatures[i].game == "Pathfinder"){
-                        if(path){
-                            document.getElementById(i).style.display = 'block';
-                        }else{
-                            document.getElementById(i).style.display = 'none';
-                        }
+                        games[i] = miniatures[i].game;
                     }else{
-                        if(other){
-                            document.getElementById(i).style.display = 'block';
-                        }else{
-                            document.getElementById(i).style.display = 'none';
+                        games[i] = "Other";
+                    }
+//                    console.log(miniatures[i].isPlayerOption.toLowerCase());
+                    if(miniatures[i].isPlayerOption == "yes"){
+                        isPC[i] = true;
+                    }else{
+                        isPC[i] = false;
+                    }
+                }
+//                console.log(games);
+                var filters = [
+                    ["D&D", document.getElementById("dndToggle").checked, games],
+                    ["Pathfinder", document.getElementById("pathToggle").checked, games],
+                    ["Other", document.getElementById("otherToggle").checked, games],
+                    [false, document.getElementById("pcToggle").checked, isPC]
+                ];
+//                console.log();
+//                document.getElementById("5").display = "none";
+                for (var i = 0; i < miniatures.length; i++){
+                    var display = true;
+                    
+                    //check each filter boxes to see if they apply
+                    for (var j = 0; j < filters.length; j++){
+                        if(filters[j][2][i] == filters[j][0]){      //if object's property is equal to filter's string property
+                            if(filters[j][0] === false){            //if filter's 0 value === false, display = checked state
+//                                console.log(isPC[i]);
+                                if(filters[j][1]){
+                                    display = false;
+                                }
+                            }else if(!filters[j][1]){               //else if box is not checked, display false
+                                display = false;
+                            }
                         }
-//                            console.log(miniatures[i].game);
+                    }
+                    if(display){
+                        document.getElementById(i).style.display = 'block';
+                    }else{
+                        document.getElementById(i).style.display = 'none';
                     }
                 }
             }
@@ -260,20 +301,6 @@
                     document.getElementById(sortableIndex.indexOf(sortable[i][1])).style.order = value;
                     sortableIndex[index] = sortableIndex[index]+i;
                 }
-                
-                
-//                miniatures.sort((a, b) => a.name.localeCompare(b.name));
-//                for(var i = 0; i < miniatures.length; i++){
-//                    console.log(document.getElementById(i).style.order);
-//                    document.getElementById(i).classList.add(miniatures.length-miniatures[i].image);
-//                    console.log(document.getElementById(i).style.order);
-//                }
-//                for(var i = 0; i < miniatures.length; i++){
-//                    console.log(document.getElementById(i).classList[1]);
-//                    document.getElementById(i).style.order = document.getElementById(i).classList[1];
-//                    document.getElementById(i).classList.remove(i);
-                    //TODO: pass order without creating a class
-//                }
             }
             
             function CreateSourceList(minis){
@@ -324,7 +351,7 @@
                 
                 var len = miniatures.length;
 
-                console.log(len);
+//                console.log(len);
                 function InitDatabase(){
                     for (var i = 0; i < len; i++){
                         if(typeof miniatures[i].year == 'undefined'){
@@ -332,36 +359,19 @@
                         }
                         miniatures[i].image = i;
                         InputNewMini(miniatures[i].name, miniatures[i].imgURL, miniatures[i].size, miniatures[i].rarity, miniatures[i].source, miniatures[i].quantity, miniatures[i].sourceLong, miniatures[i].game,  miniatures[i].year, miniatures[i].index, i);
-                        console.log(miniatures[i].year);
+//                        console.log(miniatures[i].year);
                     }
                 }
                 InitDatabase();
                 Sort(true, 'name');
 //                Sort(true, 'rarity');
 //                CreateSourceList(miniatures);
-            
+                LoadImagesOnScreen();
             });
             
             
             
             
         </script>
-        <!--
-<div class="content-box">
-<div class="content-box-inside">
-<div class="name-box">test</div>
-<div class="info-box-left"></div>
-<div class="info-box-right"></div>
-<div class="picture-box">
-<img src="https://media.miniaturemarket.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/d/dderlw-025a.jpg">
-</div>
-<div class="bottom-box">
-<img src = "img/dd.png">
-<div>text</div>
-</div>
-
-</div>
-</div>
--->
     </body>
 </html>
