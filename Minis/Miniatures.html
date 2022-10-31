@@ -339,7 +339,7 @@
             var AccessDatabase = firebase.database().ref('/').once('value').then(function(snapshot) {
                 miniatures = snapshotToArray(snapshot);
                 for (var i = 0; i < miniatures.length; i++){
-                    if(miniatures[i].imgURL == "-"){
+                    if(miniatures[i].imgURL == "-" || miniatures[i].hide){
                         miniatures.splice(i, 1);
                         i -=1;
                     }
