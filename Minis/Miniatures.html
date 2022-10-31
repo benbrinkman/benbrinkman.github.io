@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="minis.css"> 
 
     </head>
-    <body onscroll="LoadImagesOnScreen()">
+    <body onscroll="ScrollDetected()">
         <div id="top">
             <div id="menuButton">
                 <div id="menuButtonStyle" onclick='OpenMenu()'>
@@ -19,6 +19,7 @@
                 <input type="search" id='searchBar' placeholder="search for a mini..." onkeyup='FilterToggle()' onsearch='FilterToggle()'>
             </div>
             <div id="clearTags" onclick="ClearFilters()">x Clear Filters</div>
+            <div id="ScrollToTop" onclick='ScrollToTop()'><b>^</b><br>To Top</div>
             <div id="clickOff" onmouseover='OpenMenu()'></div>
             <div id="menu">
                 <div class="optionHolder">
@@ -94,6 +95,7 @@
             numDifMinis = 0;
             var Sources = [];
             var miniatures =[];
+            var lastScrollTop = 0;
             
             function InputNewMini(name, img_url, size, rarity, source, quantity, sourceLong, game, year, idNum, index){
                 
@@ -141,10 +143,13 @@
                     img.loading = 'lazy';
                     img.src = img_url;
                     
-//                    console.log(img.naturalHeight + " " + img.naturalWidth);
                     
                     if(img.naturalHeight == img.naturalWidth){
                         img.classList.add("wideImg");
+                        if(img.naturalHeight == 0 || img.naturalWidth == 0){
+                            console.log(name);
+                        }
+                        
                         
                     }
                     else if(img.naturalHeight < img.naturalWidth){
@@ -159,6 +164,15 @@
                     pictureLink.setAttribute("href", img_url);
                     img.onload = function() {
 //                        console.log(img.id + " done!");
+                        if(img.height <= img.width){
+                            img.classList.remove("tallImg");
+                            img.classList.add("wideImg");
+                            //                            console.log(name +": "+this.height/this.width+": ratio");
+                        }else{
+                            img.classList.remove("wideImg");
+                            img.classList.add("tallImg");
+                            //                            console.log(name +": "+this.height/this.width+": ratio");
+                        }
                     }
                     
                 }
@@ -188,18 +202,29 @@
                 }
             }
             
-            function LoadImagesOnScreen(){
-                var screenHeight = screen.height;
-//                console.log("screen height: " + screenHeight);
+            function ScrollDetected(){
                 
-                for (var i = 0; i < miniatures.length;i++){
-                    var element = document.getElementById(i);
-                    var disToTop = element.getBoundingClientRect().top;
-                    if(disToTop < screenHeight+500){
-//                        console.log(miniatures[i].name + " " +disToTop);
-                        
-                    }
+                var st = window.pageYOffset || document.documentElement.scrollTop; 
+                if (st >= lastScrollTop){
+                    // downscroll code
+//                    document.getElementById("ScrollToTop").style.display = 'none';
+                    document.getElementById("ScrollToTop").style.display = 'none';
+                } else {
+                    document.getElementById("ScrollToTop").style.display = 'block';
+//                    document.getElementById("ScrollToTop").style.bottom = '-150px';
+                    // upscroll code
                 }
+                lastScrollTop = st <= 0 ? 0 : st;
+//                console.log("screen height: " +);
+                
+            }
+            
+            function ScrollToTop(){
+                console.log(document.documentElement.scrollTop);
+                document.documentElement.scrollTop = 0;
+                document.getElementById("ScrollToTop").style.display = 'none';
+                lastScrollTop=0;
+
             }
             
             function FilterToggle(){
@@ -447,7 +472,7 @@
                 Sort(true, 'name');
 //                Sort(true, 'rarity');
 //                CreateSourceList(miniatures);
-                LoadImagesOnScreen();
+//                LoadImagesOnScreen();
             });
             
             
