@@ -15,6 +15,10 @@
                     <div class="menuSandwitchBars"></div>
                 </div>
             </div>
+            <div id="searchContainer">
+                <input type="search" id='searchBar' placeholder="search for a mini..." onkeyup='FilterToggle()' onsearch='FilterToggle()'>
+            </div>
+            <div id="clearTags" onclick="ClearFilters()">x Clear Filters</div>
             <div id="clickOff" onmouseover='OpenMenu()'></div>
             <div id="menu">
                 <div class="optionHolder">
@@ -143,7 +147,7 @@
                         img.classList.add("wideImg");
                         
                     }
-                    else if(img.naturalHeight/img.naturalWidth < 350/296){
+                    else if(img.naturalHeight < img.naturalWidth){
                         img.classList.add("wideImg");
 //                            console.log(name +": "+this.height/this.width+": ratio");
                     }else{
@@ -201,10 +205,12 @@
             function FilterToggle(){
                 
                 var len = miniatures.length;
+                var searchQuery = document.getElementById("searchBar").value;
                 
                 //set all sources other than D&D and Pathfinder to other in a new array, and check that one
                 var games = [];
                 var isPC = [];
+                var isSearchResult = [];
                 for (var i = 0; i < miniatures.length; i++){
                     if(miniatures[i].game == "D&D"){
                         games[i] = miniatures[i].game;
@@ -219,14 +225,18 @@
                     }else{
                         isPC[i] = false;
                     }
+                    isSearchResult[i]=SearchIndex(i, searchQuery);
                 }
-//                console.log(games);
+//                console.log(isSearchResult);
                 var filters = [
                     ["D&D", document.getElementById("dndToggle").checked, games],
                     ["Pathfinder", document.getElementById("pathToggle").checked, games],
                     ["Other", document.getElementById("otherToggle").checked, games],
-                    [false, document.getElementById("pcToggle").checked, isPC]
+                    [false, document.getElementById("pcToggle").checked, isPC],
+                    [false, IsSearchQueryAvailable(), isSearchResult]
                 ];
+                
+                
 //                console.log();
 //                document.getElementById("5").display = "none";
                 for (var i = 0; i < miniatures.length; i++){
@@ -251,16 +261,63 @@
                         document.getElementById(i).style.display = 'none';
                     }
                 }
+                CheckClearButton();
             }
 
+            function CheckClearButton(){
+                noFilters = true;
+                if(document.getElementById("pcToggle").checked){
+                    noFilters = false;
+                }
+                if(!document.getElementById("dndToggle").checked){
+                    noFilters = false;
+                }
+                if(!document.getElementById("pathToggle").checked){
+                    noFilters = false;
+                }
+                if(!document.getElementById("otherToggle").checked){
+                    noFilters = false;
+                }
+                if(!document.getElementById("testToggle").checked){
+                    noFilters = false;
+                }
+                
+                if(document.getElementById("sortOptions").value !== "name"){
+                    noFilters = false;   
+                }
+                
+                
+                
+                if(noFilters){
+                    document.getElementById("clearTags").style.display = "none";
+                }else{
+                    document.getElementById("clearTags").style.display = "block";
+                }
+            }
+            
+            function ClearFilters(){
+                console.log("clearing filters");
+                document.getElementById("pcToggle").checked = false;
+                document.getElementById("dndToggle").checked = true;
+                document.getElementById("pathToggle").checked = true;
+                document.getElementById("testToggle").checked = true;
+                document.getElementById("otherToggle").checked = true;
+                document.getElementById("sortOptions").value = "name";
+                document.getElementById("clearTags").style.display = "none";
+                RunSort();
+                FilterToggle();
+                
+            }
+            
             function RunSort(){
                 var property = document.getElementById("sortOptions").value;
-                console.log(property);
+//                console.log(property);
                 if(document.getElementById("testToggle").checked){
                     Sort(true, property);
                 }else{
                     Sort(false, property);
                 }
+                FilterToggle();
             }
             
             function Sort(ascending, property){
@@ -300,6 +357,30 @@
                     }
                     document.getElementById(sortableIndex.indexOf(sortable[i][1])).style.order = value;
                     sortableIndex[index] = sortableIndex[index]+i;
+                }
+            }
+            
+            function SearchIndex(index, query){
+                var inName = miniatures[index].name.toLowerCase().includes(query.toLowerCase());
+                var inSource = miniatures[index].sourceLong.toLowerCase().includes(query.toLowerCase());
+                var searchSource = false;
+                
+                var returnResult = false;
+                if(inSource && searchSource){
+                    returnResult = true;
+                }
+                if(inName){
+                    returnResult = true;
+                }
+                
+                return returnResult;
+            }
+            
+            function IsSearchQueryAvailable(){
+                if(document.getElementById("searchBar").value == ""){
+                    return false;
+                }else{
+                    return true;
                 }
             }
             
