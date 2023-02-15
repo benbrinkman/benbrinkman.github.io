@@ -39,12 +39,21 @@ window.addEventListener('load', function(){
     var width = ctx.canvas.width;
     var height = ctx.canvas.height;
     var numBoids = 300;				//number of boids objects
-    var maxSpeed = 10;				//limiting the speed
-    var maxSteeringForce = 0.7;
-    var desiredSeparation = 50;		//distance to check for other boids to separate from
-    var searchDistance = 200.0;		//distance to search for cohesion and alignment
-    var followDis = 200.0;			//distance to follow/repel from -- unimplimented
-    var avoidObjectDistance = 150.0;
+    
+    var maxSpeed = 15;				//limiting the speed
+    var minSpeed = 5;
+    
+    var maxSteeringForce = 1;
+    var minSteeringForce = 0.5;
+    
+    var minSeparationDistance = 50.0;    //distance to check for other boids to separate from
+    var maxSeparationDistance = 75.0;    //distance to check for other boids to separate from
+    var minAlignmentDistance = 150.0;		//distance to search for cohesion and alignment
+    var maxAlignmentDistance = 200.0;		//distance to search for cohesion and alignment
+    var minCohesionDistance = 150.0;			//distance to follow/repel from -- unimplimented
+    var maxCohesionDistance = 200.0;			//distance to follow/repel from -- unimplimented
+    var minAvoidObjectDistance = 50.0;
+    var maxAvoidObjectDistance = 150.0;
 
     //weight of the three flocking influences
     var seperationWeight =1;
@@ -95,6 +104,7 @@ window.addEventListener('load', function(){
             ctx.translate(flock[i].position.x,flock[i].position.y);
             ctx.rotate(flock[i].velocity.heading());
             circle(radius, flock[i].color);
+//            triangle(radius, flock[i].color);
             //ctx.fillRect(0,0,radius+5,radius);
             ctx.restore();
         }
@@ -107,6 +117,15 @@ window.addEventListener('load', function(){
     function circle(rad, color){
         ctx.beginPath();
         ctx.arc(0, 0, rad, 0, 2 * Math.PI, false);
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+    
+    function triangle(rad, color){
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.lineTo(-2*rad, rad/2);
+        ctx.lineTo(-2*rad, -rad/2);
         ctx.fillStyle = color;
         ctx.fill();
     }
@@ -242,6 +261,12 @@ window.addEventListener('load', function(){
             this.velocity = Vector(0.0,0.0);
             this.acceleration = Vector(0.0,0.0);
             this.color = "rgb(" + getRndInteger(0,255) +"," + getRndInteger(0,255) +","+getRndInteger(0,255)+")";
+            this.mySpeed = getRndFloat(minSpeed, maxSpeed);
+            this.mySteeringForce = getRndFloat(minSteeringForce, maxSteeringForce);
+            this.mySeparationDistance = getRndFloat(minSeparationDistance, maxSeparationDistance);
+            this.myCohesionDistance = getRndFloat(minCohesionDistance, maxCohesionDistance);
+            this.myAlignmentDistance = getRndFloat(minAlignmentDistance, maxAlignmentDistance);
+            this.myAvoidObjectDistance = getRndFloat(minAvoidObjectDistance, maxAvoidObjectDistance);
         },
         //update boid
         updateBoid: function(){
@@ -270,7 +295,7 @@ window.addEventListener('load', function(){
             var count = 0;
             for(var i = 0; i < boids.length; i++){
                 var d = dist(this.position, boids[i].position);
-                if (d < desiredSeparation && d > 0)
+                if (d < this.mySeparationDistance && d > 0)
                 {
                     var delta = Vector();
                     delta = this.position.subtract(boids[i].position);
@@ -285,9 +310,9 @@ window.addEventListener('load', function(){
             if(count >0){
                 steer.div(count); 
                 steer.normalize();
-                steer.mult(maxSpeed);
+                steer.mult(this.mySpeed);
                 steer = subtract(steer, this.velocity);
-                steer.limit(maxSteeringForce);
+                steer.limit(this.mySteeringForce);
             }
             steer.mult(seperationWeight);
             return steer;
@@ -300,7 +325,7 @@ window.addEventListener('load', function(){
                 var avoidObject = Vector(x,y);
                 //var avoidObject = Vector (200.0, 200.0);
                 var d = dist(this.position, avoidObject);
-                if (d < avoidObjectDistance)
+                if (d < this.myAvoidObjectDistance)
                 {
                     var delta = Vector();
                     delta = this.position.subtract(avoidObject);
@@ -308,9 +333,9 @@ window.addEventListener('load', function(){
                     delta.div(d);
                     steer.add(delta);
                     steer.normalize();
-                    steer.mult(maxSpeed);
+                    steer.mult(this.mySpeed);
                     steer = subtract(steer, this.velocity);
-                    steer.limit(maxSteeringForce);
+                    steer.limit(this.mySteeringForce);
                 }
             }
 
@@ -324,7 +349,7 @@ window.addEventListener('load', function(){
             var count = 0;
             for(var i = 0; i < boids.length; i++){
                 var d = dist(this.position, boids[i].position);
-                if (d < searchDistance && d > 0)
+                if (d < this.myCohesionDistance && d > 0)
                 {
                     sum.add(boids[i].position);
                     count++;
@@ -336,11 +361,11 @@ window.addEventListener('load', function(){
                 var desired = Vector(0,0);
                 desired = subtract(sum, this.position);
                 desired.normalize();
-                desired.mult(maxSpeed);
+                desired.mult(this.mySpeed);
 
                 var steer = Vector(0,0);
                 steer = subtract(desired, this.velocity);
-                steer.limit(maxSteeringForce);
+                steer.limit(this.mySteeringForce);
                 steer.mult(cohesionWeight);
                 return steer;
             }
@@ -352,7 +377,7 @@ window.addEventListener('load', function(){
             var count = 0;
             for(var i = 0; i < boids.length; i++){
                 var d = dist(this.position, boids[i].position);
-                if (d < searchDistance && d > 0)
+                if (d < this.myAlignmentDistance && d > 0)
                 {
                     sum.add(boids[i].velocity);
                     count++;
@@ -363,12 +388,12 @@ window.addEventListener('load', function(){
 
                 sum.div(count); 
                 sum.normalize();
-                sum.mult(maxSpeed);
+                sum.mult(this.mySpeed);
                 var alignment = Vector(0,0);
                 alignment= subtract(sum,this.velocity);
                 //alignment.normalize();
-                //alignment.mult(maxSpeed);
-                alignment.limit(maxSteeringForce);
+                //alignment.mult(this.mySpeed);
+                alignment.limit(this.mySteeringForce);
                 alignment.mult(alignmentWeight);
                 return alignment;
             }
