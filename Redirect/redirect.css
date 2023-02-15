@@ -3,6 +3,11 @@ body{
     margin:0;
 }
 
+#Draw{
+    position: absolute;
+    z-index: -10;
+}
+
 #top{
     width:100%;
     background-color:black;
@@ -162,6 +167,10 @@ body{
     color:#07d;
     font-family: "Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 300;
+}
+
+#bump_me_up{
+    margin-top: -30px;
 }
 
 h2{

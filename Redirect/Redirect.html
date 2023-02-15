@@ -7,9 +7,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="RedirectFlockingPageScript.js"></script>
+
 
     </head>
 <body>
+    <div id="mousePosX" style="display:none"></div>
+    <div id="mousePosY" style="display:none"></div>
+    <canvas id="Draw"></canvas>
     <div id="top">
 <!--        <div id="searchStyle">-->
             <form method="get" action="https://www.google.com/search">
@@ -307,7 +312,7 @@
                 </div>
             </div>
             <div class = textBoxSizer>
-                <div class = "textBox">
+                <div class = "textBox" id="bump_me_up">
                     <h2>Misc</h2>
                     <a href="https://www.flickr.com/photos/114802638@N08/albums">Family photos</a><br>
                     <a href="https://catlikecoding.com/unity/tutorials/flow/waves/">Unity wave tutorial</a><br>

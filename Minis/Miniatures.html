@@ -7,7 +7,7 @@
 
     </head>
     <body onscroll="ScrollDetected()">
-        <div id="top">
+        <div id="top" onmouseover="OpenMenu()">
             <div id="menuButton">
                 <div id="menuButtonStyle" onclick='OpenMenu()'>
                     <div class="menuSandwitchBars"></div>
@@ -91,7 +91,25 @@
                 return returnArr;
             };
             
+            /*
+            //To do:
+                -Move menu to a side bar that expands on hover
+                -finish words in search bar if user starts to input it
+                -Filter by sets
+                -Add tags to excelsheet
+                    -Have a way of including tags in the search bar, suggest tags
+                -if image is wider than the element it is in, tag it wide image
+                -Replace sort by rarity with rarity filters
+                -Replace sort by size with size filters
+                -Update release dates to include month/day
+                -Include index number on card
+                -Maybe add higlight feature? Instead of filtering, highlight selections
+                -Include numbers next to filters to show how many of that filter remain
+                
+                
             
+            
+            */
             numDifMinis = 0;
             var Sources = [];
             var miniatures =[];
@@ -147,7 +165,7 @@
                     if(img.naturalHeight == img.naturalWidth){
                         img.classList.add("wideImg");
                         if(img.naturalHeight == 0 || img.naturalWidth == 0){
-                            console.log(name);
+//                            console.log(name);
                         }
                         
                         
@@ -164,7 +182,7 @@
                     pictureLink.setAttribute("href", img_url);
                     img.onload = function() {
 //                        console.log(img.id + " done!");
-                        if(img.height <= img.width){
+                        if(img.height <= img.width || img.width > document.getElementById(index).width){
                             img.classList.remove("tallImg");
                             img.classList.add("wideImg");
                             //                            console.log(name +": "+this.height/this.width+": ratio");

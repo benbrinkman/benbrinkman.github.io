@@ -12,8 +12,8 @@ p{
     padding:0;
 }
 #top{
-    height:50px;
-    width:100%;
+    width:50px;
+    height:100%;
     background-color:black;
     margin-bottom:10px;
     top:0;
@@ -24,7 +24,7 @@ p{
     display:none;
     background-color: white;
     width:300px;
-    height:450px;
+    height:100%;
     position:fixed;
     top:0;
     
