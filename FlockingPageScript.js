@@ -247,9 +247,9 @@ window.addEventListener('load', function(){
     //when objects go off one side of the screen, come back on the other	
     function screenWrap (vector) {
         if (vector.x < 0){vector.x = width;}
-        else if (vector.x > width)	{vector.x = 0;}
+        else if (vector.x > width)	{vector.x = 1;}
         if (vector.y < 0){vector.y = height;}
-        else if (vector.y > height){vector.y = 0;}
+        else if (vector.y > height){vector.y = 1;}
     }
 
     //boid object
