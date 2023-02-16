@@ -38,7 +38,7 @@ window.addEventListener('load', function(){
     ctx.canvas.height = document.body.scrollHeight;
     var width = ctx.canvas.width;
     var height = ctx.canvas.height;
-    var numBoids = 300;				//number of boids objects
+    var numBoids = 50;				//number of boids objects
     
     var maxSpeed = 15;				//limiting the speed
     var minSpeed = 5;
@@ -46,19 +46,19 @@ window.addEventListener('load', function(){
     var maxSteeringForce = 1;
     var minSteeringForce = 0.5;
     
-    var minSeparationDistance = 50.0;    //distance to check for other boids to separate from
-    var maxSeparationDistance = 75.0;    //distance to check for other boids to separate from
-    var minAlignmentDistance = 150.0;		//distance to search for cohesion and alignment
-    var maxAlignmentDistance = 200.0;		//distance to search for cohesion and alignment
-    var minCohesionDistance = 150.0;			//distance to follow/repel from -- unimplimented
+    var minSeparationDistance = 20.0;    //distance to check for other boids to separate from
+    var maxSeparationDistance = 50.0;    //distance to check for other boids to separate from
+    var minAlignmentDistance = 100.0;		//distance to search for cohesion and alignment
+    var maxAlignmentDistance = 175.0;		//distance to search for cohesion and alignment
+    var minCohesionDistance = 100.0;			//distance to follow/repel from -- unimplimented
     var maxCohesionDistance = 200.0;			//distance to follow/repel from -- unimplimented
-    var minAvoidObjectDistance = 50.0;
-    var maxAvoidObjectDistance = 150.0;
+    var minAvoidObjectDistance = 100.0;
+    var maxAvoidObjectDistance = 100.0;
 
     //weight of the three flocking influences
     var seperationWeight =1;
     var mouseWeight = 3;
-    var alignmentWeight =0.7;
+    var alignmentWeight =0.8;
     var cohesionWeight =0.1;
 
     var radius=10;					//radius of boids
@@ -246,9 +246,9 @@ window.addEventListener('load', function(){
 
     //when objects go off one side of the screen, come back on the other	
     function screenWrap (vector) {
-        if (vector.x < 0){vector.x = width;}
+        if (vector.x < 0){vector.x = width-1;}
         else if (vector.x > width)	{vector.x = 1;}
-        if (vector.y < 0){vector.y = height;}
+        if (vector.y < 0){vector.y = height-1;}
         else if (vector.y > height){vector.y = 1;}
     }
 
