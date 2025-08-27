@@ -18,10 +18,39 @@ window.addEventListener('mousemove', function(event){
             y: (event.clientY - rect.top) * scaleY     // been adjusted to be relative to element
         }
     }
-})
+});
+document.addEventListener('keydown', function(event){
+    if (event.key === 's') {
+        document.getElementById("huddle").innerHTML = "true";
+    }
+    if (event.key === 'a') {
+        document.getElementById("chaos").innerHTML = "true";
+    }
+    if (event.key === 'c') {
+        document.getElementById("scatter").innerHTML = "true";
+    }
+});
+
+document.addEventListener('keyup', function(event){
+    if (event.key === 's') {
+        document.getElementById("huddle").innerHTML = "false";
+    }
+    if (event.key === 'a') {
+        document.getElementById("chaos").innerHTML = "false";
+    }
+    if (event.key === 'c') {
+        document.getElementById("scatter").innerHTML = "false";
+    }
+    if (event.code === 'Space') {
+        if(document.getElementById("displayWinds").innerHTML == "true"){
+            document.getElementById("displayWinds").innerHTML = "false";
+        }else{
+            document.getElementById("displayWinds").innerHTML = "true";
+        }
+    }
+});
 
 document.addEventListener("mouseleave", function(event){
-
     if(event.clientY <= 0 || event.clientX <= 0 || (event.clientX >= window.innerWidth || event.clientY >= window.innerHeight))
     {
         document.getElementById("mousePosX").innerHTML = null;
@@ -61,10 +90,24 @@ window.addEventListener('load', function(){
     var alignmentWeight =0.8;
     var cohesionWeight =0.1;
 
+    var scatter = "false";
+    var huddle = "false";
+    var chaos = "false";
+
+    
     var radius=10;					//radius of boids
     var flock =[];					//initialize flock
 
-
+    var numWinds = 6;
+    var winds =[];
+    
+    var drawWinds = true;
+//    var wind = Vector(200, 50);
+    var windX = 200;
+    
+    var windWidth = 30;
+    var windSpeed = 1;
+    var maxWindSpeed = 15;
 
     function defineCanvasSize(){
         if(window.innerHeight != height || window.innerWidth != width){            
@@ -81,7 +124,11 @@ window.addEventListener('load', function(){
     function init(){
         ctx.fillStyle = "rgb(0, 0, 0)";
         ctx.fillRect(0,0,width, height);
-        for (var i = 0; i < numBoids;i++){
+        for (var i = 0; i < numWinds;i++){
+            winds[i] = Object.create(wind);
+            winds[i].initWind(i+1);
+        }
+        for (i = 0; i < numBoids;i++){
             flock[i] = Object.create(boid);
             flock[i].initBoid();
             flock[i].updateBoid();
@@ -94,9 +141,32 @@ window.addEventListener('load', function(){
         ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
         defineCanvasSize();
         ctx.fillRect(0,0,width, height);		//reset background color every frame
+        drawWinds = document.getElementById("displayWinds").innerHTML;
+        
+        scatter = document.getElementById("scatter").innerHTML;
+        huddle = document.getElementById("huddle").innerHTML;
+        chaos = document.getElementById("chaos").innerHTML;
+        
+        
+        if(drawWinds == "true"){
+            for(var i = 0; i < winds.length; i++){
+                ctx.strokeStyle = winds[i].color;
+
+                if(winds[i].isVertical){
+                    ctx.strokeRect(winds[i].position.x-(windWidth/2),0, windWidth, height);
+                }else{
+                    ctx.strokeRect(0, winds[i].position.y-(windWidth/2), width, windWidth);
+                }
+
+            }
+        }
+        
+        
+        
+        ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
 
         //for every boid:
-        for(var i = 0; i < flock.length; i++){
+        for(i = 0; i < flock.length; i++){
             ctx.save();
             flock[i].flocking(flock);	//call the flocking updates
             flock[i].updateBoid();		//call the main update
@@ -129,7 +199,7 @@ window.addEventListener('load', function(){
         ctx.fillStyle = color;
         ctx.fill();
     }
-
+    
     //My vector handler
     var vector = {
         //create an object with an x and y variable
@@ -243,6 +313,14 @@ window.addEventListener('load', function(){
     function getRndFloat(min, max) {
         return Math.random() * (max - min) + min;
     }
+    
+    function getRndBool(chance) {
+        if(Math.random() < chance){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     //when objects go off one side of the screen, come back on the other	
     function screenWrap (vector) {
@@ -251,7 +329,42 @@ window.addEventListener('load', function(){
         if (vector.y < 0){vector.y = height-1;}
         else if (vector.y > height){vector.y = 1;}
     }
-
+    
+    var wind = {
+        initWind: function(type){
+            if(type==null || type > 4 || type < 0){
+                type = getRndInteger(1,4);
+            }
+            this.position = Vector(0.0,0.0);
+            this.influence = Vector(0.0,0.0);
+            if(type == 1){ //going up
+                this.position = Vector(getRndFloat(0.0, width), 0.0);
+                this.influence = Vector(0.0, windSpeed);
+                this.color = "rgba(0, 255, 0, 0.1)";
+                this.isVertical = true;
+            }
+            else if (type == 2){ //going down
+                this.position = Vector(getRndFloat(0.0, width), 0.0);
+                this.influence = Vector(0.0, -windSpeed);
+                this.color = "rgba(255, 0, 0, 0.1)";
+                this.isVertical = true;
+            }
+            else if (type == 3){ //going right
+                this.position = Vector(0.0, getRndFloat(0.0, height));
+                this.influence = Vector(windSpeed, 0.0);
+                this.color = "rgba(0, 255, 0, 0.1)";
+                this.isVertical = false;
+            }
+            else{ //going left
+                this.position = Vector(0.0, getRndFloat(0.0, height));
+                this.influence = Vector(-windSpeed, 0.0);
+                this.color = "rgba(255, 0, 0, 0.1)";
+                this.isVertical = false;
+            }
+            
+        },
+    };
+    
     //boid object
     var boid = {
 
@@ -284,9 +397,10 @@ window.addEventListener('load', function(){
         //apply the 3 flocking forces to the boids objects, and adjust them by their weighting
         flocking: function(boids){
             this.applyForce(this.seperate(boids));
-            this.applyForce(this.avoidObject());
             this.applyForce(this.align(boids));
             this.applyForce(this.cohesion(boids));
+            this.applyForce(this.avoidObject());
+            this.applyForce(this.windForce(winds));
         },
 
         //make boids objects aware of each other, move away from other nearby boids
@@ -315,33 +429,12 @@ window.addEventListener('load', function(){
                 steer.limit(this.mySteeringForce);
             }
             steer.mult(seperationWeight);
-            return steer;
-        },
-        avoidObject: function(){
-            var steer = Vector(0,0);
-            var x = document.getElementById("mousePosX").innerHTML;
-            var y = document.getElementById("mousePosY").innerHTML;
-            if (x != null){                
-                var avoidObject = Vector(x,y);
-                //var avoidObject = Vector (200.0, 200.0);
-                var d = dist(this.position, avoidObject);
-                if (d < this.myAvoidObjectDistance)
-                {
-                    var delta = Vector();
-                    delta = this.position.subtract(avoidObject);
-                    delta.normalize();
-                    delta.div(d);
-                    steer.add(delta);
-                    steer.normalize();
-                    steer.mult(this.mySpeed);
-                    steer = subtract(steer, this.velocity);
-                    steer.limit(this.mySteeringForce);
-                }
+            if(huddle == "true"){
+                steer.mult(-1);
             }
-
-            steer.mult(mouseWeight);
             return steer;
         },
+        
 
         //move boids towards the average position of nearby boids, making group stick together
         cohesion: function(boids){
@@ -367,6 +460,9 @@ window.addEventListener('load', function(){
                 steer = subtract(desired, this.velocity);
                 steer.limit(this.mySteeringForce);
                 steer.mult(cohesionWeight);
+                if(scatter == "true"){
+                    steer.mult(-1);
+                }
                 return steer;
             }
             return Vector(0,0);
@@ -395,10 +491,64 @@ window.addEventListener('load', function(){
                 //alignment.mult(this.mySpeed);
                 alignment.limit(this.mySteeringForce);
                 alignment.mult(alignmentWeight);
+                if(chaos == "true"){
+                    alignment.mult(-1);
+                }
                 return alignment;
             }
             return Vector(0,0);
         },
+        avoidObject: function(){
+            var steer = Vector(0,0);
+            var x = document.getElementById("mousePosX").innerHTML;
+            var y = document.getElementById("mousePosY").innerHTML;
+            if (x != null){                
+                var avoidObject = Vector(x,y);
+                //var avoidObject = Vector (200.0, 200.0);
+                var d = dist(this.position, avoidObject);
+                if (d < this.myAvoidObjectDistance)
+                {
+                    var delta = Vector();
+                    delta = this.position.subtract(avoidObject);
+                    delta.normalize();
+                    delta.div(d);
+                    steer.add(delta);
+                    steer.normalize();
+                    steer.mult(this.mySpeed);
+                    steer = subtract(steer, this.velocity);
+                    steer.limit(this.mySteeringForce);
+                }
+            }
+
+            steer.mult(mouseWeight);
+            return steer;
+        },
+        windForce: function(windObjects){
+            var steer = Vector(0,0);
+            
+            for(var i = 0; i < windObjects.length; i++){
+                if(windObjects[i].isVertical){
+                    if(this.position.x >= windObjects[i].position.x-(windWidth/2) && this.position.x <=windObjects[i].position.x+(windWidth/2)){
+                        steer.add(windObjects[i].influence);
+                        steer.normalize();
+                        steer.mult(maxWindSpeed);
+                        steer = subtract(steer, this.velocity);
+                        steer.limit(this.mySteeringForce);
+                    }
+                }else{
+                    if(this.position.y >= windObjects[i].position.y-(windWidth/2) && this.position.y <=windObjects[i].position.y+(windWidth/2)){
+                        steer.add(windObjects[i].influence);
+                        steer.normalize();
+                        steer.mult(maxWindSpeed);
+                        steer = subtract(steer, this.velocity);
+                        steer.limit(this.mySteeringForce);
+                    }
+                }
+            }            
+            return steer;
+
+        },
+
     };
 
     //Initialize and update
