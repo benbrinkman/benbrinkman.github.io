@@ -7,7 +7,7 @@
     "ansi-styles": "^4.3.0",
     "balanced-match": "^1.0.2",
     "base64-arraybuffer": "^0.2.0",
-    "brace-expansion": "^1.1.11",
+    "brace-expansion": "^1.1.12",
     "cliui": "^7.0.4",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
