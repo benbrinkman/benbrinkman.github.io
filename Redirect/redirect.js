@@ -126,10 +126,7 @@ function CreateLink(cont, url, img, size) {
 
     const linkBox = document.createElement("div");
     linkBox.classList.add("linkBox");
-    // console.log(img);
-    if(img == "youtube.png"){
-        linkBox.id = "test";
-    }
+    
 
     const centerImgWrapper = document.createElement("div");
     centerImgWrapper.classList.add("centerImgWrapper");

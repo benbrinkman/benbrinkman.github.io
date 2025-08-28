@@ -108,6 +108,7 @@ body {
   background: radial-gradient(circle at 50% 0px, #ffffff28, rgba(255, 255, 255, 0) 58%);
   -webkit-filter: blur(5px);
   z-index: 2;
+  pointer-events: none;
 }
 .linkBox:after {
   content: "";
@@ -118,6 +119,7 @@ body {
   top: 0;
   left: 0;
   background: radial-gradient(circle at 50% 30%, rgba(238, 238, 238, 0), rgba(204, 204, 204, 0.103) 50%, #4d4d4d75 100%);
+  pointer-events: none;
 }
 
 .linkBox .shadow {
