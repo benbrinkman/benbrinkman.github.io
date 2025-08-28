@@ -5,6 +5,7 @@ const links = [
     { title: "messenger", link: "https://www.messenger.com/t/" },
     { title: "heroforge", link: "https://www.heroforge.com/" },
     { title: "youtube", link: "https://youtube.com", size: "small" },
+    { title: "miro", link: "https://miro.com"},
     { title: "blossom", link: "https://blossomcounselling.janeapp.com/account" },
     { title: "roundcube", link: "https://email.fatcow.com/roundcube/?_task=mail&_mbox=INBOX", size: "small" },
     { title: "amazon", link: "https://www.amazon.ca/" },
